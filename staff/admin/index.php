@@ -106,14 +106,26 @@ $requests = query($query);
                             <?php if($req['request_status'] == 'waiting approval') :?>
                                 <form method="post">
                                     <input type="submit" name="approve-<?= $req['request_id'] ?>" value="approve">
-                                    <input type="submit" name="reject-<?= $req['request_id'] ?>" value="reject">
+                                    <input type="submit" name="reject-<?= $req['request_id'] ?>" value="reject" onclick="return confirm('request akan direject?');">
                                 </form>
                             <?php elseif($req['request_status'] == 'approved') :?>
                                 <!-- DONE: pengambilan barang -->
                                 <?php 
                                 $t = 'taken-' . $req['request_id'];
                                 if(isset($_POST[$t])){
-                                    taken($req['request_id']);
+
+                                    if(strtotime("today") >= strtotime($req['book_date'])){
+                                        taken($req['request_id']);
+                                    }
+                                    else{
+                                        echo "
+                                        <script>
+                                            alert('Silahkan ambil barang sesuai dengan tanggal booking!');
+                                            document.location.href = 'index.php';
+                                        </script>
+                                        ";
+                                        exit;
+                                    }
                                 }
                                 ?>
                                 <form method="post">

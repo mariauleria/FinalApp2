@@ -63,7 +63,7 @@
                         <td class="req-status"><?= $req['request_status']; ?></td>
                         <td>
                             <?php if($req['request_status'] == 'waiting approval') : ?>
-                                <a href="index.php?id=<?= $req['request_id'] ?>">Cancel</a>
+                                <a href="index.php?id=<?= $req['request_id'] ?>" onclick="return confirm('Request akan di cancel?');">Cancel</a>
                             <?php elseif($req['request_status'] == 'approved') :?>
                                 Silahkan ambil barang sesuai jadwal booking.
                             <?php elseif($req['request_status'] == 'on use') :?>
