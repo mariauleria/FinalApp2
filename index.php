@@ -76,7 +76,7 @@
                                 <?php if(!$req['flag_return']) :?>       
                                     <a href="kembaliAsset.php?id=<?= htmlspecialchars($req['request_id']) ?>">Kembalikan Barang</a>
                                 <?php else: ?>
-                                    <!-- TO DO: buat lihat status pengembaliannya -->
+                                    <!-- DONE: buat lihat status pengembaliannya -->
                                     <a href="statusKembali.php?id=<?= htmlspecialchars($req['request_id']) ?>">Lihat Status Pengembalian</a>
                                 <?php endif; ?>
                                 
