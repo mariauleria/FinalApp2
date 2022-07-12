@@ -37,7 +37,7 @@ $result = query($query);
                     <td><?= $res['asset_brand'] ?></td>
                     <td>
                         <a href="">Edit</a> |  <!-- TO DO: buat edit page -->
-                        <a href="">Hapus</a>   <!-- TO DO: kalau dihapus asetnya gmn? -->
+                        <a href="../backend/hapusAssetFunction.php?id=<?= htmlspecialchars($res['asset_id']) ?>">Hapus</a>   <!-- DONE: kalau dihapus asetnya gmn? -->
                     </td>
                     <td>
                         <?php 

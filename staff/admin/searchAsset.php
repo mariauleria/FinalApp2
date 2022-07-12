@@ -28,7 +28,11 @@
                     <td><?= $i; ?></td>
                     <td><?= $req['asset_name']; ?></td>
                     <td><?= $req['asset_qty']; ?></td>
-                    <td><a href="./detailAsset.php?category_id=<?= $req['category_id'] ?>&asset_name=<?= $req['asset_name'] ?>">Detail</a></td>
+                    <td>
+                        <?php if($req['asset_qty'] != 0) :?>
+                            <a href="./detailAsset.php?category_id=<?= $req['category_id'] ?>&asset_name=<?= $req['asset_name'] ?>">Detail</a>
+                        <?php endif; ?>
+                    </td>
                 </tr>
             <?php $i++; ?>
             <?php endforeach;?>

@@ -72,14 +72,12 @@ function notValid(){
                     <th>No.</th>
                     <th>Nama Asset</th>
                     <th>Quantity</th>
-                    <th>ID Asset</th>
                 </tr>
                 <?php foreach($obj as $o) :?>
                     <tr>
                         <td><?= $i ?></td>
                         <td><?= $o->asset_name ?></td>
                         <td><?= $o->asset_qty ?></td>
-                        <td><?php foreach($o->asset_id as $ids) echo $ids . ";"; ?></td>
                     </tr>
                 <?php $i++; endforeach; ?>
             </table>

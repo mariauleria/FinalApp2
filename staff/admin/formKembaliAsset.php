@@ -23,19 +23,21 @@ if(isset($_POST['submit'])){
         $query = "SELECT request_items FROM requests WHERE request_id = $request_id";
         $row = query($query);
         $row = json_decode($row[0]['request_items']);
-        $row = $row->items[0];
-        $row = $row->asset_id;
+        
+        foreach($row->items as $rw){
+            $rws = $rw->asset_id;
 
-        $flag = false;
-        foreach($row as $r){
-            $query = "UPDATE assets SET asset_status = 'in storage', asset_curr_location = (SELECT asset_assigned_location FROM assets WHERE asset_id = $r) WHERE asset_id = $r;";
-            $query = pg_query($dbconn, $query);
+            $flag = false;
+            foreach($rws as $r){
+                $query = "UPDATE assets SET asset_status = 'in storage', asset_curr_location = (SELECT asset_assigned_location FROM assets WHERE asset_id = $r) WHERE asset_id = $r;";
+                $query = pg_query($dbconn, $query);
 
-            if(pg_affected_rows($query) > 0){
-                $flag = true;
+                if(pg_affected_rows($query) > 0){
+                    $flag = true;
+                }
             }
         }
-
+        
         if($flag){
             $query = "UPDATE requests SET request_status = 'done', realize_return_date = CURRENT_TIMESTAMP, flag_return = TRUE WHERE request_id = $1;";
             $statement = pg_prepare($dbconn, "", $query);
