@@ -62,7 +62,9 @@ if(isset($_POST['submit'])){
                     <label for="asset-status">Status Asset</label>
                     <select name="asset-status" id="asset-status" required>
                         <option value="in storage" selected>Available</option>
-                        <option value="not available">Not Available</option>
+                        <?php if($result['asset_status'] != 'on use') :?>
+                            <option value="not available">Not Available</option>
+                        <?php endif;?>
                     </select>
                 </li>
                 <li>
