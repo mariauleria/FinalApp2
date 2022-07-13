@@ -36,8 +36,10 @@ $result = query($query);
                     <td><?= $res['asset_curr_location'] ?></td>
                     <td><?= $res['asset_brand'] ?></td>
                     <td>
-                        <a href="./editAsset.php?id=<?= htmlspecialchars($res['asset_id']) ?>">Edit</a> |  <!-- DONE: buat edit page -->
-                        <a href="../backend/hapusAssetFunction.php?id=<?= htmlspecialchars($res['asset_id']) ?>" onclick="return confirm('Asset akan dihapus?');">Hapus</a>   <!-- DONE: kalau dihapus asetnya gmn? -->
+                        <a href="./editAsset.php?id=<?= htmlspecialchars($res['asset_id']) ?>">Edit</a>  <!-- DONE: buat edit page -->
+                        <?php if($res['asset_status'] != 'on use') :?>
+                            | <a href="../backend/hapusAssetFunction.php?id=<?= htmlspecialchars($res['asset_id']) ?>" onclick="return confirm('Asset akan dihapus?');">Hapus</a>   <!-- DONE: kalau dihapus asetnya gmn? -->
+                        <?php endif; ?>
                     </td>
                     <td>
                         <?php 

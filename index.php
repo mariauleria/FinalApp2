@@ -73,11 +73,13 @@
 
                                 <!-- DONE: pengembalian barang -->
                                 <!-- DONE: udah dibenerin :D -->
-                                <?php if(!$req['flag_return']) :?>       
-                                    <a href="kembaliAsset.php?id=<?= htmlspecialchars($req['request_id']) ?>">Kembalikan Barang</a>
-                                <?php else: ?>
-                                    <!-- DONE: buat lihat status pengembaliannya -->
-                                    <a href="statusKembali.php?id=<?= htmlspecialchars($req['request_id']) ?>">Lihat Status Pengembalian</a>
+                                <?php if(strtotime("today") <= strtotime($req['return_date'])):
+                                    if(!$req['flag_return']) :?>       
+                                        <a href="kembaliAsset.php?id=<?= htmlspecialchars($req['request_id']) ?>">Kembalikan Barang</a>
+                                    <?php else: ?>
+                                        <!-- DONE: buat lihat status pengembaliannya -->
+                                        <a href="statusKembali.php?id=<?= htmlspecialchars($req['request_id']) ?>">Lihat Status Pengembalian</a>
+                                    <?php endif; ?>
                                 <?php endif; ?>
                                 
                             <?php elseif($req['request_status'] == 'done'): ?>

@@ -114,7 +114,7 @@ $requests = query($query);
                                 $t = 'taken-' . $req['request_id'];
                                 if(isset($_POST[$t])){
 
-                                    if(strtotime("today") >= strtotime($req['book_date'])){
+                                    if(strtotime("today") <= strtotime($req['book_date'])){
                                         taken($req['request_id']);
                                     }
                                     else{

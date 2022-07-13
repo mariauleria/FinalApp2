@@ -66,7 +66,11 @@ if(isset($_POST['submit'])){
 
                                             $avail = $row['asset_qty'] - $temp[0] - countNA($row['category_id']); 
                                             // var_dump($temp);
+                                            if($avail < 0){
+                                                $avail = 0;
+                                            }
                                             echo $avail; 
+                                            
                                         ?>
                                     </td>
                                     <td>

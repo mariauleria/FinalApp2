@@ -72,6 +72,7 @@ if(isset($_POST['submit'])){
                     <?php endif; ?>
                 </li>
                 <li>
+                    <input type="hidden" name="curr-location" value="<?= $result['asset_curr_location'] ?>">
                     <label for="storage-location">Storage Location</label>
                     <input type="text" name="storage-location" id="storage-location" value="<?= $result['asset_assigned_location'] ?>" required>
                 </li>
