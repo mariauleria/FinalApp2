@@ -60,12 +60,16 @@ if(isset($_POST['submit'])){
                 </li>
                 <li>
                     <label for="asset-status">Status Asset</label>
-                    <select name="asset-status" id="asset-status" required>
-                        <option value="in storage" selected>Available</option>
-                        <?php if($result['asset_status'] != 'on use') :?>
+                    <?php if($result['asset_status'] == 'on use') : ?>
+                        <select name="asset-status" id="asset-status" required>
+                            <option value="on use" selected>On Use</option>
+                        </select>
+                    <?php else: ?>
+                        <select name="asset-status" id="asset-status" required>
+                            <option value="in storage" selected>Available</option>
                             <option value="not available">Not Available</option>
-                        <?php endif;?>
-                    </select>
+                        </select>
+                    <?php endif; ?>
                 </li>
                 <li>
                     <label for="storage-location">Storage Location</label>
