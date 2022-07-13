@@ -74,6 +74,7 @@ if(isset($_POST['submit'])){
                     <input type="text" name="brand" id="brand" value="<?= $result['asset_brand'] ?>" required>
                 </li>
                 <li>
+                    <input type="hidden" name="asset-id" value="<?= $result['asset_id'] ?>">
                     <button type="submit" name="submit">Submit</button>
                 </li>
             </ul>
