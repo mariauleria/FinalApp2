@@ -5,6 +5,15 @@ require 'dbaset.php';
 $book_date = '';
 $return_date = '';
 
+function countNA($category_id){
+    global $dbconn;
+    $query = "SELECT COUNT(*) FROM assets WHERE asset_status = 'not available' AND category_id = $category_id;";
+    $query = pg_query($query);
+    $query = pg_fetch_assoc($query);
+    
+    return $query['count'];
+}
+
 function notAvailable($category_id, $data){
 
     $result_date = explode(" - ", $data['datetimes']);
@@ -14,7 +23,7 @@ function notAvailable($category_id, $data){
     global $return_date;
     $return_date = strtotime($result_date[1]);
 
-    // TO DO: gimana klo asset statusnya unavailable? alias barangnya rusak apakah ttp keitung?
+    // DONE: gimana klo asset statusnya unavailable? alias barangnya rusak apakah ttp keitung?
 
     $query = "SELECT * FROM assets WHERE category_id = $category_id";
     $result = query($query);
@@ -43,7 +52,7 @@ function notAvailable($category_id, $data){
                 }
             }
         }
-        if($available){
+        if($available && ($res['asset_status'] == 'in storage')){
             array_push($avail_items, $res['asset_id']);
         }
     }

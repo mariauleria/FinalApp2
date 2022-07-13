@@ -64,7 +64,7 @@ if(isset($_POST['submit'])){
                                             $temp = notAvailable($row['category_id'], $_POST);
                                             $available_items = $temp[1];
 
-                                            $avail = $row['asset_qty'] - $temp[0]; 
+                                            $avail = $row['asset_qty'] - $temp[0] - countNA($row['category_id']); 
                                             // var_dump($temp);
                                             echo $avail; 
                                         ?>

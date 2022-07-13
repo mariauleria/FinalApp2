@@ -15,12 +15,12 @@ function notValid(){
 function hapusAsset($asset_id){
     global $dbconn;
 
-    $query = "SELECT * FROM assets WHERE asset_id = $asset_id AND asset_status = 'in storage';";
+    $query = "SELECT * FROM assets WHERE asset_id = $asset_id AND (asset_status = 'in storage' OR asset_status = 'not available');";
 
     if(query($query)){
         $cat_id = query($query)[0]['category_id'];
 
-        $query = "DELETE FROM assets WHERE asset_id = $asset_id AND asset_status = 'in storage';";
+        $query = "DELETE FROM assets WHERE asset_id = $asset_id AND (asset_status = 'in storage' OR asset_status = 'not available');";
         $query = pg_query($query);
 
         if(pg_affected_rows($query) > 0){
