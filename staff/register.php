@@ -95,22 +95,17 @@ if(isset($_POST['register'])){
             <li>
                 <label for="department">Department</label>
                 <select name="department" id="department">
-                    <option value="Marketing">Marketing</option>
-                    <option value="Software Laboratory">Software Laboratory</option>
-                    <option value="DKV">DKV</option>
-                    <option value="DI">DI</option>
-                    <option value="IT">IT</option>
+                    <!-- DONE: iterasi option utk tampilin departmentnya dari database. pake enum aja -->
+                    <?php 
+                        require './backend/dbaset.php';
+                        $query = "SELECT unnest(enum_range(NULL, NULL::prodi));";
+                        $result = query($query);
+
+                        foreach($result as $res):
+                    ?>
+                        <option value="<?= $res['unnest'] ?>"><?= $res['unnest'] ?></option>
+                    <?php endforeach; ?>
                 </select>
-
-                <!-- TO DO: iterasi option utk tampilin departmentnya dari database. Rekomendasi: daripada buat enum type prodinya, mending bikin 1 tabel lagi isinya kode prodi dan track_approver masing2nya. -->
-                <?php 
-                    // require './backend/dbaset.php';
-                    // $query = "SELECT enum_range(null::prodi);";
-                    // $result = query($query);
-
-                    // $arr = explode(",", $result[0]['enum_range']);
-                    // var_dump($arr);
-                ?>
             </li>
 
             <?php if(isset($errorMsg)): ?>
