@@ -1,10 +1,14 @@
 <?php
 
 function deleteRequestsData($r_id_arr){
-    var_dump($r_id_arr);
-    echo '<br><br>';
+    // var_dump($r_id_arr);
+    // echo '<br><br>';
+
+    $flag = -1;
 
     foreach($r_id_arr as $r){
+        global $dbconn;
+
         $query = "UPDATE requests SET request_status = 'rejected' WHERE request_id = $r;";
         $query = pg_query($query);
 
@@ -20,9 +24,9 @@ function deleteRequestsData($r_id_arr){
                 array_push($ass_id, $ai);
             }
         }
-        echo '<br>';
-        var_dump($ass_id);
-        echo '<br>';
+        // echo '<br>';
+        // var_dump($ass_id);
+        // echo '<br>';
 
         foreach($ass_id as $i){
             $query = "SELECT asset_booked_date FROM assets WHERE asset_id = $i";
@@ -38,13 +42,22 @@ function deleteRequestsData($r_id_arr){
             }
 
             $result = json_encode(array("requests" => $result));
-            $query = "";
+            $query = "UPDATE assets SET asset_booked_date = $1 WHERE asset_id = $2;";
+            $statement = pg_prepare($dbconn, "", $query);
+            $statement = pg_execute($dbconn, "", array($result, $i));
 
-            var_dump($result);
-            echo '<br>';
+            if(pg_affected_rows($statement) > 0){
+                $flag = pg_affected_rows($statement);
+            }
+
+            // var_dump($i); 
+            // echo " ";
+            // var_dump($result);
+            // echo '<br>';
         }
     }
 
+    return $flag;
 }
 
 function editAsset($data){
@@ -70,8 +83,8 @@ function editAsset($data){
             $r_id_arr = array();
 
             for($i = count($result)-1; $i >= 0; $i--){
-                var_dump($result[$i]->book_date);
-                echo '<br>';
+                // var_dump($result[$i]->book_date);
+                // echo '<br>';
 
                 $a = new DateTime($result[$i]->book_date, new DateTimeZone('Asia/Jakarta'));
                 $b = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
@@ -91,7 +104,6 @@ function editAsset($data){
                 }
             }
             deleteRequestsData($r_id_arr);
-            die;
         }
     }
     

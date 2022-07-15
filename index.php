@@ -10,14 +10,32 @@
 
     if(isset($_GET['id'])){
         $id = $_GET['id'];
-        $query = "DELETE FROM requests WHERE request_id = $1";
-        $statement = pg_prepare($dbconn, "", $query);
-        $statement = pg_execute($dbconn, "", array($id));
 
-        if(pg_affected_rows($statement) > 0){
+        //DONE: ngecek pas mo cancel request udh di approve atau belum. kalo udh approved gabisa di cancel.
+        $query = "SELECT request_status FROM requests WHERE request_id = $id;";
+        $query = pg_query($query);
+        $query = pg_fetch_assoc($query);
+        $query = $query['request_status'];
+
+        if($query == 'waiting approval'){
+            $query = "DELETE FROM requests WHERE request_id = $1";
+            $statement = pg_prepare($dbconn, "", $query);
+            $statement = pg_execute($dbconn, "", array($id));
+
+            if(pg_affected_rows($statement) > 0){
+                echo "
+                <script>
+                    alert('Request berhasil dihapus!');
+                    document.location.href = 'index.php';
+                </script>
+                ";
+                exit;
+            }
+        }
+        else{
             echo "
             <script>
-                alert('Request berhasil dihapus!');
+                alert('Request sudah di approved admin tidak bisa di cancel!');
                 document.location.href = 'index.php';
             </script>
             ";
