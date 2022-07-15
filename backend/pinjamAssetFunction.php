@@ -52,7 +52,7 @@ function notAvailable($category_id, $data){
                 }
             }
         }
-        if($available && ($res['asset_status'] == 'in storage')){
+        if($available && ($res['asset_status'] != 'not available')){
             array_push($avail_items, $res['asset_id']);
         }
     }

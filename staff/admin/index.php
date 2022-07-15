@@ -114,8 +114,28 @@ $requests = query($query);
                                 $t = 'taken-' . $req['request_id'];
                                 if(isset($_POST[$t])){
 
-                                    if(strtotime("today") <= strtotime($req['book_date'])){
-                                        taken($req['request_id']);
+                                    // DONE: betulin tanggalnya -_-
+
+                                    $a = new DateTime($req['book_date']);
+                                    $b = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
+
+                                    $c = $a->format('m/d/Y');
+                                    $d = $b->format('m/d/Y');
+                                    if($d >= $c){
+                                        $a = (int)$a->format('His');
+                                        $b = (int)$b->format('His');
+                                        if($b >= $a){
+                                            taken($req['request_id']);
+                                        }
+                                        else{
+                                            echo "
+                                            <script>
+                                                alert('Silahkan ambil barang sesuai dengan tanggal booking!');
+                                                document.location.href = 'index.php';
+                                            </script>
+                                            ";
+                                            exit;
+                                        }
                                     }
                                     else{
                                         echo "
