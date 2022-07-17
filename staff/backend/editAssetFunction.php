@@ -9,7 +9,7 @@ function deleteRequestsData($r_id_arr){
     foreach($r_id_arr as $r){
         global $dbconn;
 
-        $query = "UPDATE requests SET request_status = 'rejected' WHERE request_id = $r;";
+        $query = "UPDATE requests SET request_status = 'canceled' WHERE request_id = $r;";
         $query = pg_query($query);
 
         $query = "SELECT request_items FROM requests WHERE request_id = $r;";

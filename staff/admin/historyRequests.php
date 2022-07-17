@@ -21,7 +21,7 @@ FROM (
 ) temp_table
 INNER JOIN assetcategory
 ON temp_table.category_id::int = assetcategory.category_id
-WHERE asset_kode_prodi = '$kode_prodi' AND (request_status = 'done' OR request_status = 'rejected');
+WHERE asset_kode_prodi = '$kode_prodi' AND (request_status = 'done' OR request_status = 'rejected' OR request_status = 'canceled');
 ";
 
 $requests = query($query);
@@ -93,7 +93,7 @@ $requests = query($query);
                             <!-- TO DO: buat pdf generate receiptnya -->
                             <?php if($req['request_status'] == 'done') :?>
                                 <button>Download Receipt</button>
-                            <?php elseif($req['request_status'] == 'rejected') :?>
+                            <?php elseif($req['request_status'] == 'rejected' || $req['request_status'] == 'canceled') :?>
                                 -
                             <?php endif; ?>
                         </td>

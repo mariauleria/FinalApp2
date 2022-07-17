@@ -44,12 +44,12 @@ function hapusAsset($asset_id){
         }
     }
 
-    // DONE: terus dari request id itu yg udh didapetin set request_statusnya jadi rejected
+    // DONE: terus dari request id itu yg udh didapetin set request_statusnya jadi canceled
 
     $flag = true;
 
     foreach($allRequestIDs as $ids){
-        $query = "UPDATE requests SET request_status = 'rejected' WHERE request_id = $1;";
+        $query = "UPDATE requests SET request_status = 'canceled' WHERE request_id = $1;";
         $query = pg_prepare($dbconn, "", $query);
         $query = pg_execute($dbconn, "", array($ids));
 

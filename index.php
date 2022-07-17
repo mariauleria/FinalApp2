@@ -117,7 +117,7 @@
                                 <!-- TO DO: buat pdf generate receiptnya -->
                                 <button>Download Receipt</button>
 
-                            <?php elseif($req['request_status'] == 'rejected') :?>
+                            <?php elseif($req['request_status'] == 'rejected' || $req['request_status'] == 'canceled') :?>
                                 -
                             <?php endif; ?>
                         </td>
