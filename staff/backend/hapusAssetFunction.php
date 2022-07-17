@@ -16,9 +16,49 @@ function hapusAsset($asset_id){
     global $dbconn;
 
     $query = "SELECT * FROM assets WHERE asset_id = $asset_id AND (asset_status = 'in storage' OR asset_status = 'not available');";
+    $query = query($query)[0];
+    $cat_id = $query['category_id'];
+    $assetBookedID = $query['asset_booked_date'];
+    $assetBookedID = json_decode($assetBookedID);
+    $assetBookedID = $assetBookedID->requests;
+    // DONE: ambil semua request ID yg udh ngebook aset yg mo dihapus dimasa depan
+    $allRequestIDs = array();
+    
+    foreach($assetBookedID as $a){
 
-    if(query($query)){
-        $cat_id = query($query)[0]['category_id'];
+        $now = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
+        $book = new DateTime($a->book_date, new DateTimeZone('Asia/Jakarta'));
+
+        $c = $now->format('m/d/Y');
+        $d = $book->format('m/d/Y');
+        if($d > $c){
+            array_push($allRequestIDs, $a->request_ID);
+        }
+        else if($d == $c){
+            $now = $now->format('His');
+            $book = $book->format('His');
+
+            if($book >= $now){
+                array_push($allRequestIDs, $a->request_ID);
+            }
+        }
+    }
+
+    // DONE: terus dari request id itu yg udh didapetin set request_statusnya jadi rejected
+
+    $flag = true;
+
+    foreach($allRequestIDs as $ids){
+        $query = "UPDATE requests SET request_status = 'rejected' WHERE request_id = $1;";
+        $query = pg_prepare($dbconn, "", $query);
+        $query = pg_execute($dbconn, "", array($ids));
+
+        if(pg_affected_rows($query) <= 0){
+            $flag = false;
+        }
+    }
+
+    if($flag == true){
 
         $query = "DELETE FROM assets WHERE asset_id = $asset_id AND (asset_status = 'in storage' OR asset_status = 'not available');";
         $query = pg_query($query);

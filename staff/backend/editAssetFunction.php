@@ -98,7 +98,7 @@ function editAsset($data){
                     $a = (int)$a->format('His');
                     $b = (int)$b->format('His');
 
-                    if($a > $b){
+                    if($a >= $b){
                         array_push($r_id_arr, $result[$i]->request_ID);
                     }
                 }

@@ -90,7 +90,7 @@ $requests = query($query);
                         <td><?= $req['request_reason']; ?></td>
                         <td><?= $req['request_status']; ?></td>
                         <td>
-                            <!-- TO DO: buat download pdf receiptnya -->
+                            <!-- TO DO: buat pdf generate receiptnya -->
                             <?php if($req['request_status'] == 'done') :?>
                                 <button>Download Receipt</button>
                             <?php elseif($req['request_status'] == 'rejected') :?>

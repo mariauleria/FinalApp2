@@ -38,7 +38,7 @@ $result = query($query);
                     <td>
                         <?php if($res['asset_status'] != 'on use') :?>
                             <a href="./editAsset.php?id=<?= htmlspecialchars($res['asset_id']) ?>">Edit</a>  <!-- DONE: buat edit page -->
-                            <!-- TO DO: Kalau hapus asetnya request yg bookingnya gimana? arahin ke delete requestnya? -->
+                            <!-- DONE: Kalau hapus asetnya request yg bookingnya gimana? arahin ke delete requestnya? -->
                             | <a href="../backend/hapusAssetFunction.php?id=<?= htmlspecialchars($res['asset_id']) ?>" onclick="return confirm('Asset akan dihapus?');">Hapus</a>   <!-- DONE: kalau dihapus asetnya gmn? -->
                         <?php endif; ?>
                     </td>
