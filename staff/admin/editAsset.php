@@ -66,8 +66,13 @@ if(isset($_POST['submit'])){
                         </select>
                     <?php else: ?>
                         <select name="asset-status" id="asset-status" required>
-                            <option value="in storage" selected>Available</option>
-                            <option value="not available">Not Available</option>
+                            <?php if($result['asset_status'] == 'in storage') :?>
+                                <option value="in storage" selected>Available</option>
+                                <option value="not available">Not Available</option>
+                            <?php elseif($result['asset_status'] == 'not available'): ?>
+                                <option value="in storage">Available</option>
+                                <option value="not available" selected>Not Available</option>
+                            <?php endif; ?>
                         </select>
                     <?php endif; ?>
                 </li>

@@ -78,32 +78,34 @@ function editAsset($data){
             $result = query($query)[0];
             $result = $result['asset_booked_date'];
             $result = json_decode($result);
-            $result = $result->requests;
+            if($result){
+                $result = $result->requests;
 
-            $r_id_arr = array();
+                $r_id_arr = array();
 
-            for($i = count($result)-1; $i >= 0; $i--){
-                // var_dump($result[$i]->book_date);
-                // echo '<br>';
+                for($i = count($result)-1; $i >= 0; $i--){
+                    // var_dump($result[$i]->book_date);
+                    // echo '<br>';
 
-                $a = new DateTime($result[$i]->book_date, new DateTimeZone('Asia/Jakarta'));
-                $b = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
+                    $a = new DateTime($result[$i]->book_date, new DateTimeZone('Asia/Jakarta'));
+                    $b = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
 
-                $c = $a->format('m/d/Y');
-                $d = $b->format('m/d/Y');
-                if($c > $d){
-                    array_push($r_id_arr, $result[$i]->request_ID);
-                }
-                else if($c == $d){
-                    $a = (int)$a->format('His');
-                    $b = (int)$b->format('His');
-
-                    if($a >= $b){
+                    $c = $a->format('m/d/Y');
+                    $d = $b->format('m/d/Y');
+                    if($c > $d){
                         array_push($r_id_arr, $result[$i]->request_ID);
                     }
+                    else if($c == $d){
+                        $a = (int)$a->format('His');
+                        $b = (int)$b->format('His');
+
+                        if($a >= $b){
+                            array_push($r_id_arr, $result[$i]->request_ID);
+                        }
+                    }
                 }
+                deleteRequestsData($r_id_arr);
             }
-            deleteRequestsData($r_id_arr);
         }
     }
     

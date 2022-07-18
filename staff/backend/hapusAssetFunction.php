@@ -20,41 +20,44 @@ function hapusAsset($asset_id){
     $cat_id = $query['category_id'];
     $assetBookedID = $query['asset_booked_date'];
     $assetBookedID = json_decode($assetBookedID);
-    $assetBookedID = $assetBookedID->requests;
-    // DONE: ambil semua request ID yg udh ngebook aset yg mo dihapus dimasa depan
+
     $allRequestIDs = array();
-    
-    foreach($assetBookedID as $a){
-
-        $now = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
-        $book = new DateTime($a->book_date, new DateTimeZone('Asia/Jakarta'));
-
-        $c = $now->format('m/d/Y');
-        $d = $book->format('m/d/Y');
-        if($d > $c){
-            array_push($allRequestIDs, $a->request_ID);
-        }
-        else if($d == $c){
-            $now = $now->format('His');
-            $book = $book->format('His');
-
-            if($book >= $now){
-                array_push($allRequestIDs, $a->request_ID);
-            }
-        }
-    }
-
-    // DONE: terus dari request id itu yg udh didapetin set request_statusnya jadi canceled
 
     $flag = true;
 
-    foreach($allRequestIDs as $ids){
-        $query = "UPDATE requests SET request_status = 'canceled' WHERE request_id = $1;";
-        $query = pg_prepare($dbconn, "", $query);
-        $query = pg_execute($dbconn, "", array($ids));
+    if($assetBookedID){
+        $assetBookedID = $assetBookedID->requests;
+        // DONE: ambil semua request ID yg udh ngebook aset yg mo dihapus dimasa depan
 
-        if(pg_affected_rows($query) <= 0){
-            $flag = false;
+        foreach($assetBookedID as $a){
+
+            $now = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
+            $book = new DateTime($a->book_date, new DateTimeZone('Asia/Jakarta'));
+    
+            $c = $now->format('m/d/Y');
+            $d = $book->format('m/d/Y');
+            if($d > $c){
+                array_push($allRequestIDs, $a->request_ID);
+            }
+            else if($d == $c){
+                $now = $now->format('His');
+                $book = $book->format('His');
+    
+                if($book >= $now){
+                    array_push($allRequestIDs, $a->request_ID);
+                }
+            }
+        }
+
+        // DONE: terus dari request id itu yg udh didapetin set request_statusnya jadi canceled
+        foreach($allRequestIDs as $ids){
+            $query = "UPDATE requests SET request_status = 'canceled' WHERE request_id = $1;";
+            $query = pg_prepare($dbconn, "", $query);
+            $query = pg_execute($dbconn, "", array($ids));
+    
+            if(pg_affected_rows($query) <= 0){
+                $flag = false;
+            }
         }
     }
 
