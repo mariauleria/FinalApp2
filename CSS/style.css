@@ -1,8 +1,19 @@
-label{
-    display: block;
+label {
+  display: block;
 }
 
-p{
-    color: red;
-    font-style: italic;
+p {
+  color: red;
+  font-style: italic;
+}
+
+/* General */
+.bodyStyling {
+  background-color: #4ca8c8;
+}
+
+.containerStyling {
+  background-color: #88bdcf;
+  border-radius: 1rem;
+  margin-top: 10%;
 }
