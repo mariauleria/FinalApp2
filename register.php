@@ -80,6 +80,9 @@
                     <label class="h5 mx-4 mb-2" for="email">Email</label>
                     <div class="input-group mb-3 px-4">
                         <input type="text" class="form-control" name="email" id="email">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">@binus.ac.id</span>
+                        </div>
                    </div>
                 </div>
             </div>
