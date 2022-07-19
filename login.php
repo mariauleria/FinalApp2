@@ -59,7 +59,9 @@
         <h1 class="pt-5 pb-4">Student Login</h1>
 
         <?php if(isset($errorMsg)) : ?>
-            <p>email/password salah!</p>
+            <div class="alert alert-danger w-50 m-auto" role="alert">
+                <h6>Email / Password Salah!</h6>
+            </div>
         <?php endif; ?>
 
         <form action="" method="post">
