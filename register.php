@@ -134,9 +134,9 @@
             </div>
             
             <?php if(isset($errorMsg)): ?>
-                <li>
-                    <p>Data tidak sesuai!</p>
-                </li>
+                <div class="alert alert-danger w-50 m-auto" role="alert">
+                    <h6>Data Tidak Sesuai!</h6>
+                </div>
             <?php endif;?>
                 
             <div class="d-flex justify-content-end">
