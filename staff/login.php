@@ -8,7 +8,8 @@ if(isset($_SESSION['login-staff'])){
         exit;
     }
     else if($_SESSION['curr-user']->user_role == 'Approver'){
-        // TO DO: arahin ke approver/index.php
+        header("Location: approver/index.php");
+        exit;
     }
     else if($_SESSION['curr-user']->user_role == 'Staff'){
         // TO DO: arahin ke staff/index.php
@@ -35,7 +36,8 @@ if(isset($_POST['login'])){
             exit;
         }
         else if($_SESSION['curr-user']->user_role == 'Approver'){
-            // TO DO: arahin ke approver/index.php
+            header("Location: approver/index.php");
+            exit;
         }
         else if($_SESSION['curr-user']->user_role == 'Staff'){
             // TO DO: arahin ke staff/index.php
