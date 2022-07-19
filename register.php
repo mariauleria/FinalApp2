@@ -1,49 +1,49 @@
 <?php
 
-session_start();
+    session_start();
 
-if(isset($_SESSION['login'])){
-    header("Location: index.php");
-    exit;
-}
-
-if(isset($_SESSION['login-staff'])){
-    if($_SESSION['curr-user']->user_role == 'Admin'){
-        echo "
-        <script>
-            alert('Anda tidak punya akses ke halaman ini!');
-            document.location.href = 'staff/admin/';
-        </script>
-        ";
+    if(isset($_SESSION['login'])){
+        header("Location: index.php");
         exit;
     }
-    else if($_SESSION['curr-user']->user_role == 'Approver'){
-        // TO DO: arahin ke approver/index.php
-    }
-    else if($_SESSION['curr-user']->user_role == 'Staff'){
-        // TO DO: arahin ke staff/index.php
-    }
-}
 
-if(isset($_POST['register'])){
-
-    $_POST['register'] = true;
-
-    require './backend/registerFunction.php';
-
-    if(register($_POST) > 0){
-        echo "
-        <script>
-            alert('Anda sudah terdaftar silahkan login!');
-            document.location.href = 'login.php';
-        </script>
-        ";
-        exit;
+    if(isset($_SESSION['login-staff'])){
+        if($_SESSION['curr-user']->user_role == 'Admin'){
+            echo "
+            <script>
+                alert('Anda tidak punya akses ke halaman ini!');
+                document.location.href = 'staff/admin/';
+            </script>
+            ";
+            exit;
+        }
+        else if($_SESSION['curr-user']->user_role == 'Approver'){
+            // TO DO: arahin ke approver/index.php
+        }
+        else if($_SESSION['curr-user']->user_role == 'Staff'){
+            // TO DO: arahin ke staff/index.php
+        }
     }
-    else{
-        $errorMsg = true;
+
+    if(isset($_POST['register'])){
+
+        $_POST['register'] = true;
+
+        require './backend/registerFunction.php';
+
+        if(register($_POST) > 0){
+            echo "
+            <script>
+                alert('Anda sudah terdaftar silahkan login!');
+                document.location.href = 'login.php';
+            </script>
+            ";
+            exit;
+        }
+        else{
+            $errorMsg = true;
+        }
     }
-}
 
 ?>
 
@@ -55,66 +55,93 @@ if(isset($_POST['register'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Register</title>
 
-    <link rel="stylesheet" href="./CSS/style.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <!-- External CSS -->
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
-<body>
-    
-    <h1>Student Register</h1>
 
-    <form action="" method="POST">
-        <ul>
-            <li>
-                <label for="username">Name</label>
-                <input type="text" name="username" id="username">
-            </li>
-            <li>
-                <label for="binusian-id">Binusian ID</label>
-                <input type="text" name="binusian-id" id="binusian-id">
-            </li>
-            <li>
-                <label for="phone">Phone Number</label>
-                <input type="text" name="phone" id="phone">
-            </li>
-            <li>
-                <label for="address">Home Address</label>
-                <input type="text" name="address" id="address">
-            </li>
-            <li>
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email">
-            </li>
-            <li>
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password">
-            </li>
-            <li>
-                <label for="confirm-password">Confirm Password</label>
-                <input type="password" name="confirm-password" id="confirm-password">
-            </li>
-            <li>
-                <label for="prodi">Prodi</label>
-                <select name="prodi" id="prodi">
-                    <option value="DKV">DKV</option>
-                    <option value="DI">DI</option>
-                    <option value="IT">IT</option>
-                </select>
-            </li>
+<body class="bodyStyling">
 
+    <div class="container w-50 text-center containerStyling">
+        
+    <h1 class="pt-5 pb-4">Student Register</h1>
+
+        <form action="" method="POST">
+            <div class="row d-flex text-left">
+                <div class="col-6">
+                    <label class="h5 mx-4 mb-2" for="username">Name</label>
+                    <div class="input-group mb-3 px-4">
+                        <input type="text" class="form-control" name="username" id="username">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label class="h5 mx-4 mb-2" for="email">Email</label>
+                    <div class="input-group mb-3 px-4">
+                        <input type="text" class="form-control" name="email" id="email">
+                   </div>
+                </div>
+            </div>
+            <div class="row d-flex text-left">
+                <div class="col-6">
+                    <label class="h5 mx-4 mb-2" for="binusian-id">Binusian ID</label>
+                    <div class="input-group mb-3 px-4">
+                        <input type="text" class="form-control" name="binusian-id" id="binusian-id">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label class="h5 mx-4 mb-2" for="phone">Phone Number</label>
+                    <div class="input-group mb-3 px-4">
+                        <input type="text" class="form-control" name="phone" id="phone">
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex text-left">
+                <div class="col-6">
+                    <label class="h5 mx-4 mb-2" for="address">Home Address</label>
+                    <div class="input-group mb-3 px-4">
+                        <input type="text" class="form-control" name="address" id="address">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label class="h5 mx-4 mb-2" for="prodi">Prodi</label>
+                    <div class="input-group mb-3 px-4">
+                        <select class="custom-select" name="prodi" id="prodi">
+                            <option value="DKV">DKV</option>
+                            <option value="DI">DI</option>
+                            <option value="IT">IT</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex text-left">
+                <div class="col-6">
+                    <label class="h5 mx-4 mb-2" for="password">Password</label>
+                    <div class="input-group mb-3 px-4">
+                        <input type="password" class="form-control" name="password" id="password">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label class="h5 mx-4 mb-2" for="confirm-password">Confirm Password</label>
+                    <div class="input-group mb-3 px-4">
+                        <input type="password" class="form-control" name="confirm-password" id="confirm-password">
+                    </div>  
+                </div>
+            </div>
+            
             <?php if(isset($errorMsg)): ?>
                 <li>
                     <p>Data tidak sesuai!</p>
                 </li>
             <?php endif;?>
-            
-            <li>
-                <button type="submit" name="register">Register</button>
-            </li>
-            <li>
-                <a href="./login.php">Login</a>
-            </li>
-        </ul>
-    </form>
+                
+            <div class="d-flex justify-content-end">
+                <a class="btn btn-secondary btn-lg mt-4 mb-5 px-5" href="./login.php">Login</a>
+                <button class="btn btn-primary btn-lg mt-4 mb-5 px-5 mx-4" type="submit" name="register">Register</button>
+            </div>
+        </form>
+    </div>
 
 </body>
 </html>

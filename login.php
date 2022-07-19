@@ -52,7 +52,7 @@
     <link rel="stylesheet" href="CSS/style.css">
 </head>
 
-<body class="bodyStyling ">
+<body class="bodyStyling">
     
     <div class="container w-25 text-center containerStyling">
 
