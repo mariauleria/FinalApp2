@@ -4,8 +4,11 @@ include './complement/header.php';
 
 include '../backend/dbaset.php';
 
-$query = 'SELECT * FROM assetcategory';
-$result = query($query);
+$kode = $_SESSION['curr-user']->user_kode_prodiv;
+$query = "SELECT * FROM assetcategory WHERE asset_kode_prodi = $1";
+$result = pg_prepare($dbconn, "", $query);
+$result = pg_execute($dbconn, "", array($kode));
+$result = pg_fetch_assoc($result);
 
 if(isset($_POST['submit'])){
 
@@ -49,9 +52,16 @@ if(isset($_POST['submit'])){
             </li>
             <li class="button-group" data-toggle="buttons">
                 Asset Type <br>
-                <?php foreach($result as $res) :?>
-                    <input type="radio" name="asset-category" id="default" value="<?= $res['category_id'] ?>"><?= $res['asset_name'] ?><br>
-                <?php endforeach; ?>
+                <?php 
+                // DONE: fix kalau belum ada aset nya sama sekali
+                if($result) :
+                    $results = array();
+                    array_push($results, $result);
+
+                    foreach($results as $res) :?>
+                        <input type="radio" name="asset-category" id="default" value="<?= $res['category_id'] ?>"><?= $res['asset_name'] ?><br>
+                    <?php endforeach; ?>
+                <?php endif; ?>
                     <input type="radio" name="asset-category" value="">Tambah Type Aset Baru
                 <div id="new-asset"></div>
             </li>
