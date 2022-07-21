@@ -2,13 +2,42 @@
 
     session_start();
 
-    if(isset($_SESSION['login-staff'])){
+if(isset($_SESSION['login-staff'])){
+    if($_SESSION['curr-user']->user_role == 'Admin'){
+        header("Location: admin/index.php");
+        exit;
+    }
+    else if($_SESSION['curr-user']->user_role == 'Approver'){
+        header("Location: approver/index.php");
+        exit;
+    }
+    else if($_SESSION['curr-user']->user_role == 'Staff'){
+        // TO DO: arahin ke staff/index.php
+    }
+}
+
+
+if(isset($_SESSION['login'])){
+    echo"
+    <script>
+        alert('Anda tidak punya akses ke halaman ini!');
+        document.location.href = '../';
+    </script>
+    ";
+    exit;
+}
+
+require './backend/loginFunction.php';
+
+if(isset($_POST['login'])){
+    if(login($_POST) == false){
         if($_SESSION['curr-user']->user_role == 'Admin'){
             header("Location: admin/index.php");
             exit;
         }
         else if($_SESSION['curr-user']->user_role == 'Approver'){
-            // TO DO: arahin ke approver/index.php
+            header("Location: approver/index.php");
+            exit;
         }
         else if($_SESSION['curr-user']->user_role == 'Staff'){
             // TO DO: arahin ke staff/index.php

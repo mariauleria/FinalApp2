@@ -6,6 +6,20 @@ if(!isset($_SESSION['login-staff'])){
     header("Location: ../login.php");
     exit;
 }
+else{
+    if($_SESSION['curr-user']->user_role == 'Approver'){
+        echo "
+        <script>
+            alert('Anda tidak punya akses ke halaman ini!');
+            document.location.href = '../approver/';
+        </script>
+        ";
+        exit;
+    }
+    elseif($_SESSION['curr-user']->user_role == 'Staff'){
+        // TO DO: arahin ke staff/index.php
+    }
+}
 
 ?>
 
