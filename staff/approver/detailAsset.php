@@ -23,7 +23,6 @@ $result = query($query);
                 <th>Current Location</th>
                 <th>Stored at</th>
                 <th>Brand</th>
-                <th>Aksi</th>
                 <th>Booked At</th>
             </tr>
 
@@ -65,15 +64,6 @@ $result = query($query);
                     <td><?= $res['asset_curr_location'] ?></td>
                     <td><?= $res['asset_assigned_location'] ?></td>
                     <td><?= $res['asset_brand'] ?></td>
-                    <td>
-                        <?php if($res['asset_status'] != 'on use') :?>
-                            <a href="./editAsset.php?id=<?= htmlspecialchars($res['asset_id']) ?>">Edit</a>  <!-- DONE: buat edit page -->
-                            <!-- DONE: Kalau hapus asetnya request yg bookingnya gimana? arahin ke delete requestnya? -->
-                            | <a href="../backend/hapusAssetFunction.php?id=<?= htmlspecialchars($res['asset_id']) ?>" onclick="return confirm('Asset akan dihapus?');">Hapus</a>   <!-- DONE: kalau dihapus asetnya gmn? -->
-                        <?php else: ?>
-                            -
-                        <?php endif; ?>
-                    </td>
                     <td>
                         <?php 
                         $obj = json_decode($res['asset_booked_date']);
