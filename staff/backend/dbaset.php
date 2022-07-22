@@ -94,6 +94,8 @@ function approve($data){
                     exit;
                 }
             }
+        }else{
+            return 1;
         }
     }
     

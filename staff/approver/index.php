@@ -20,7 +20,7 @@ FROM (
 	user_id,
 	request_items,
 	request_items -> 'items' -> 0 ->> 'category_id' AS category_id
-	FROM requests
+	FROM requests WHERE track_approver > 0
 ) temp_table
 INNER JOIN assetcategory
 ON temp_table.category_id::int = assetcategory.category_id
@@ -96,76 +96,25 @@ $requests = query($query);
                             <?php 
                                 $a = 'approve-' . $req['request_id'];
                                 $r = 'reject-' . $req['request_id'];
-                                $flag = $req['track_approver'];
 
                                 if(isset($_POST[$a])){
-                                    $flag = approve($req['request_id']);
+                                    approve($req['request_id']);
                                 }
                                 else if(isset($_POST[$r])){
                                     reject($req['request_id']);
                                 }
                             ?>
                             <?php if($req['request_status'] == 'waiting approval') :?>
-                                <?php if($flag == 0) :?>
-                                    <form method="post">
-                                        <input type="submit" name="approve-<?= $req['request_id'] ?>" value="approve">
-                                        <input type="submit" name="reject-<?= $req['request_id'] ?>" value="reject" onclick="return confirm('request akan direject?');">
-                                    </form>
-                                <?php elseif($flag == 1) :?>
-                                    Waiting other approver.
-                                <?php endif; ?>
-                            <?php elseif($req['request_status'] == 'approved') :?>
-                                <!-- DONE: pengambilan barang -->
-                                <?php 
-                                $t = 'taken-' . $req['request_id'];
-                                if(isset($_POST[$t])){
-
-                                    // DONE: betulin tanggalnya -_-
-
-                                    $a = new DateTime($req['book_date']);
-                                    $b = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
-
-                                    $c = $a->format('m/d/Y');
-                                    $d = $b->format('m/d/Y');
-                                    if($d >= $c){
-                                        $a = (int)$a->format('His');
-                                        $b = (int)$b->format('His');
-                                        if($b >= $a){
-                                            taken($req['request_id']);
-                                        }
-                                        else{
-                                            echo "
-                                            <script>
-                                                alert('Silahkan ambil barang sesuai dengan tanggal booking!');
-                                                document.location.href = 'index.php';
-                                            </script>
-                                            ";
-                                            exit;
-                                        }
-                                    }
-                                    else{
-                                        echo "
-                                        <script>
-                                            alert('Silahkan ambil barang sesuai dengan tanggal booking!');
-                                            document.location.href = 'index.php';
-                                        </script>
-                                        ";
-                                        exit;
-                                    }
-                                }
-                                ?>
                                 <form method="post">
-                                    <button type="submit" name="taken-<?= $req['request_id'] ?>" value="taken">Barang sudah diambil</button>
+                                    <input type="submit" name="approve-<?= $req['request_id'] ?>" value="approve">
+                                    <input type="submit" name="reject-<?= $req['request_id'] ?>" value="reject" onclick="return confirm('request akan direject?');">
                                 </form>
+                            <?php elseif($req['request_status'] == 'approved') :?>
+                                -
                             <?php elseif($req['request_status'] == 'on use') :?>
 
                                 <!-- TO DO: buat pdf generate receiptnya -->
                                 <button>Download Receipt</button>
-
-                                <!-- DONE: buat lihat keterangan pengembalian -->
-                                <?php if($req['flag_return'] == 'f' || (!$req['flag_return'] && $req['realize_return_date'])) :?>
-                                    <a href="formKembaliAsset.php?id=<?= htmlspecialchars($req['request_id']) ?>">Form Kembali</a>
-                                <?php endif; ?>
 
                             <?php endif; ?>
                         </td>
