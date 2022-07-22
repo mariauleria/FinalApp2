@@ -1,8 +1,10 @@
-label{
-    display: block;
+/* General */
+.bodyStyling {
+  background-color: #4ca8c8;
 }
 
-p{
-    color: red;
-    font-style: italic;
+.containerStyling {
+  background-color: #88bdcf;
+  border-radius: 1rem;
+  margin-top: 10%;
 }
