@@ -63,7 +63,9 @@ if(isset($_POST["login"])){
     
     <div class="container w-25 text-center containerStyling">
 
-        <h1 class="pt-5 pb-4">Student Login</h1>
+        <img src="img/logo-binus.png" class="logoBinus"/>
+
+        <h1 class="pb-4">Student Login</h1>
 
         <?php if(isset($errorMsg)) : ?>
             <div class="alert alert-danger w-50 m-auto" role="alert">

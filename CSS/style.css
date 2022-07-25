@@ -1,19 +1,25 @@
 .bodyStyling {
-  background-color: #4ca8c8;
+  background-color: #0090d1;
 }
 
 .containerStyling {
-  background-color: #88bdcf;
+  background-color: #5cacd2;
   border-radius: 1rem;
   margin-top: 10%;
 }
 
+.logoBinus {
+  width: 20rem;
+  height: 12rem;
+  margin: 0;
+}
+
 .headerBodyStyling {
-  background-color: #4ca8c8;
+  background-color: #0090d1;
 }
 
 .pageContainer {
-  background-color: #88bdcf;
+  background-color: #5cacd2;
 }
 
 .nav-links {
