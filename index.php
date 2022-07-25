@@ -44,8 +44,8 @@
     }
 ?>
 
-<main>
-    <div class="asset-container">
+<main class="asset-container">
+    <div>
         <?php if(!$requests) :?>
             <h2>You have no requests.</h2>
         <?php else :?>

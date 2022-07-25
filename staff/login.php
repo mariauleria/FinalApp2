@@ -83,7 +83,7 @@ if(isset($_POST['login'])){
                 <div class="input-group mb-3 px-4">
                     <input type="text" class="form-control" name="email" id="email" required>
                     <div class="input-group-append">
-                        <span class="input-group-text" id="basic-addon2">@binus.ac.id</span>
+                        <span class="input-group-text" id="basic-addon2">@binus.edu</span>
                     </div>
                 </div>
                 <div class="text-left">                    

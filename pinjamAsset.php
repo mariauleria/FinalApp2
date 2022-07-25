@@ -23,11 +23,11 @@ if(isset($_POST['submit'])){
 ?>
 
 
-<main>
-    <h2>Pinjam Aset</h2>
+<main class="asset-container">
+    <h2 class="mb-4">Pinjam Asset</h2>
 
     <?php if(!$rows) :?>
-        <p>Tidak ada asset yang bisa dipinjam.</p>
+        <p class="h4">Tidak ada asset yang bisa dipinjam.</p>
     <?php else: ?>
     <!-- DATE PICKER -->
         <form action="" method="post">

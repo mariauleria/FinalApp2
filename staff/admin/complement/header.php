@@ -41,7 +41,7 @@ else{
 
         <nav>
             <ul class="nav-links">
-                <li><a class="nav-link" id="" href="./index.php">Dashboard</a></li>
+                <li><a class="nav-link" href="./index.php">Dashboard</a></li>
                 <li><a class="nav-link" href="./searchAsset.php">Cari Aset</a></li>
                 <li><a class="nav-link" href="./historyRequests.php">History</a></li>
                 <li><a class="nav-link" href="../backend/logoutFunction.php">Logout</a></li>
