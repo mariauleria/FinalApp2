@@ -12,7 +12,21 @@ if(isset($_SESSION['login']) || isset($_SESSION['login-staff'])){
     exit;
 }
 
-// TO DO: fungsi loginnya
+if(isset($_SESSION['login-SA'])){
+    header("Location: index.php");
+    exit;
+}
+
+require 'backend/loginFunctionSA.php';
+
+// DONE: fungsi login-nya
+if(isset($_POST['login'])){
+    if(login($_POST) == false){
+        header("Location: index.php");
+        exit;
+    }
+    $errorMsg = login($_POST);
+}
 
 ?>
 
