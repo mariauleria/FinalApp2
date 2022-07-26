@@ -12,7 +12,7 @@ if(isset($_SESSION['login']) || isset($_SESSION['login-staff'])){
     exit;
 }
 
-
+// TO DO: fungsi loginnya
 
 ?>
 
