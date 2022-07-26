@@ -82,7 +82,7 @@ if(isset($_POST['login'])){
                 <button type="submit" name="login">Login</button>
             </li>
             <li>
-                <a href="">Login as Superadmin</a>
+                <a href="./superadmin/login.php">Login as Superadmin</a>
             </li>
             <li>
                 <a href="register.php">Staff Register</a>
