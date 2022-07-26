@@ -94,10 +94,10 @@ if(isset($_POST["login"])){
                     <button class="btn btn-primary btn-lg mt-4 w-50" type="submit" name="login">Login</button>
                 </div>
                 <div>
-                    <a class="btn btn-secondary mt-3 w-50" href="./staff/login.php">Staff Portal</a>
+                    <a class="btn btn-secondary mt-3 w-50" href="./register.php">Register</a>
                 </div>
                 <div>
-                    <a class="btn btn-secondary mt-3 mb-5 w-50" href="./register.php">Register</a>
+                    <a class="btn btn-secondary mt-3 w-50 mb-5" href="./staff/login.php">Staff Portal</a>
                 </div>
             </div>
         </form>

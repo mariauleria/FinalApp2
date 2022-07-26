@@ -67,6 +67,8 @@ if(isset($_POST['login'])){
     
     <div class="container w-25 text-center containerStyling">
 
+    <img src="../img/logo-binus.png" class="logoBinus"/>
+
         <h1 class="pt-5 pb-4">Staff Login</h1>
 
         <?php if(isset($errorMsg)) : ?>
@@ -96,10 +98,13 @@ if(isset($_POST['login'])){
                     <button class="btn btn-primary btn-lg mt-4 w-50" type="submit" name="login">Login</button>
                 </div>
                 <div>
-                    <a class="btn btn-secondary mt-3 w-50" href="">Login as Superadmin</a>
+                    <a class="btn btn-secondary mt-3 w-50" href="register.php">Staff Register</a>
                 </div>
                 <div>
-                    <a class="btn btn-secondary mt-3 mb-5 w-50" href="register.php">Staff Register</a>
+                    <a class="btn btn-secondary mt-3 w-50" href="../login.php">Student Portal</a>
+                </div>
+                <div>
+                    <a class="btn btn-secondary mt-3 w-50 mb-5" href="">Login as Superadmin</a>
                 </div>
             </div>
         </form>

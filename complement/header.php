@@ -36,12 +36,12 @@
             </h1>
         </div>
 
-        <div class="pageContainer">
-            <nav>
-                <ul class="nav-links">
-                    <li><a class="nav-link" href="./index.php">Dashboard</a></li>
-                    <li><a class="nav-link" href="./pinjamAsset.php">Pinjam Aset</a></li>
-                    <li><a class="nav-link" href="./backend/logoutFunction.php">Logout</a></li>
+        <div class="pageContainer ">
+            <nav class="w-100">
+                <ul class="nav-links d-flex">
+                    <li class="nav-link"><a href="./index.php">Dashboard</a></li>
+                    <li class="nav-link"><a href="./pinjamAsset.php">Pinjam Asset</a></li>
+                    <li class="nav-link ml-auto"><a class="text-danger" href="./backend/logoutFunction.php">Logout</a></li>
                 </ul>
             </nav>
     </header>

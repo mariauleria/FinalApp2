@@ -71,6 +71,8 @@ if(isset($_POST['register'])){
 
     <div class="container w-50 text-center containerStyling">
         
+    <img src="img/logo-binus.png" class="logoBinus"/>
+
     <h1 class="pt-5 pb-4">Student Register</h1>
 
         <form action="" method="POST">
@@ -113,6 +115,14 @@ if(isset($_POST['register'])){
                     </div>
                 </div>
                 <div class="col-6">
+                    <label class="h5 mx-4 mb-2" for="password">Password</label>
+                    <div class="input-group mb-3 px-4">
+                        <input type="password" class="form-control" name="password" id="password">
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex text-left">
+                <div class="col-6">
                     <label class="h5 mx-4 mb-2" for="prodi">Prodi</label>
                     <div class="input-group mb-3 px-4">
                         <select class="custom-select" name="prodi" id="prodi">
@@ -120,14 +130,6 @@ if(isset($_POST['register'])){
                             <option value="DI">DI</option>
                             <option value="IT">IT</option>
                         </select>
-                    </div>
-                </div>
-            </div>
-            <div class="row d-flex text-left">
-                <div class="col-6">
-                    <label class="h5 mx-4 mb-2" for="password">Password</label>
-                    <div class="input-group mb-3 px-4">
-                        <input type="password" class="form-control" name="password" id="password">
                     </div>
                 </div>
                 <div class="col-6">
