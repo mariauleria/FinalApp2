@@ -24,6 +24,8 @@ if(isset($_POST['save'])){
 <main>
     <h2>BINUS Users</h2>
 
+    <!-- <a href="insertNewDept.php">Add New Department</a> -->
+
     <?php if(!$result) :?>
         <h2>No Users</h2>
     <?php else: ?>
