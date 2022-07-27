@@ -30,6 +30,15 @@ if(isset($_SESSION['login-staff'])){
         // TO DO: arahin ke staff/index.php
     }
 }
+else if(isset($_SESSION['login-SA'])){
+    echo "
+    <script>
+        alert('Anda tidak punya akses ke halaman ini!');
+        document.location.href = 'staff/superadmin/';
+    </script>
+    ";
+    exit;
+}
 
 if(isset($_POST['register'])){
 
