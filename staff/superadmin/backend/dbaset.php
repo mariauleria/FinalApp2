@@ -45,4 +45,9 @@ function updateUser($data, $result){
         return false;
     }
 }
+
+//TO DO: bikin fungsi add new department
+function addNewDept($data){
+
+}
 ?>

@@ -2,11 +2,22 @@
 
 require 'component/header.php';
 
+//DONE: bikin function backend utk nambah new departmentnya
+if(isset($_POST['submit'])){
+    require 'backend/dbaset.php';
 
+    if(addNewDept($_POST) > 0){
+        echo "
+        <script>
+            alert('Departemen baru berhasil ditambahkan');
+            document.location.href = 'index.php';
+        </script>
+        ";
+        exit;
+    }
+}
 
 ?>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <main>
     <h2>Add New Department</h2>
@@ -15,34 +26,17 @@ require 'component/header.php';
         <ul>
             <li>
                 <label for="kode-prodiv">Nama departemen baru</label> <br>
-                <input type="text" name="kode-prodiv" id="kode-prodiv">
+                <input type="text" name="kode-prodiv" id="kode-prodiv" required>
             </li>
             <li>
-                Apakah departemen ini memiliki asset untuk di kelola? <br>
-                <input type="radio" name="answer" id="ya" value="tidak"><label for="ya">Ya</label>
-                <input type="radio" name="answer" id="tidak" value="ya"><label for="tidak">Tidak</label>
+                Pihak pengelola asset <br> 
+                <input type='checkbox' id='admin' name='admin' value='Admin' checked onclick='return false'><label for='admin'> Admin</label><br>
+                <input type='checkbox' id='approver' name='approver' value='Approver'><label for='approver'> Approver</label><br> 
+                <p>Silahkan meng-assign role pengelola asset di dashboard!</p>
             </li>
-            <div id="num-approver"></div>
             <li>
                 <button type="submit" name="submit">Add</button>
             </li>
         </ul>
-
-        <script>
-            function newDept(id){
-                const element = document.getElementById(id);
-                element.innerHTML = "Pihak pengelola asset <br> <input type='checkbox' id='admin' name='admin' value='Admin' checked onclick='return false'><label for='admin'> Admin</label><br><input type='checkbox' id='approver' name='approver' value='Approver'><label for='approver'> Approver</label><br> <p>Silahkan meng-assign role pengelola asset di dashboard!</p>";
-            }
-
-            $('#add-dept input[id=ya]').on('change', function(event) {
-                $('#num-approver').html(
-                    newDept('num-approver')
-                );
-            })
-
-            $('#add-dept input[id=tidak]').on('change', function(event) {
-                $('#num-approver').html("");
-            })
-        </script>
     </form>
 </main>
