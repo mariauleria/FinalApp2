@@ -46,8 +46,21 @@ function updateUser($data, $result){
     }
 }
 
-//TO DO: bikin fungsi add new department
+//DONE: bikin fungsi add new department
 function addNewDept($data){
 
+    $kode_prod = sanitize_input($data['kode-prodiv']);
+    $asset = $data['admin'];
+    if(isset($data['approver'])){
+        $asset = $data['approver'];
+    }
+
+    $query = "ALTER TYPE prodi ADD VALUE IF NOT EXISTS '$kode_prod';";
+    $query = pg_query($query);
+
+    $query = "INSERT INTO prodiv(kode_prodiv, num_approver) VALUES ('$kode_prod', $asset);";
+    $query = pg_query($query);
+
+    return pg_affected_rows($query);
 }
 ?>

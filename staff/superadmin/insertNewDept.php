@@ -30,8 +30,8 @@ if(isset($_POST['submit'])){
             </li>
             <li>
                 Pihak pengelola asset <br> 
-                <input type='checkbox' id='admin' name='admin' value='Admin' checked onclick='return false'><label for='admin'> Admin</label><br>
-                <input type='checkbox' id='approver' name='approver' value='Approver'><label for='approver'> Approver</label><br> 
+                <input type='checkbox' id='admin' name='admin' value=1 checked onclick='return false'><label for='admin'> Admin</label><br>
+                <input type='checkbox' id='approver' name='approver' value=2><label for='approver'> Approver</label><br> 
                 <p>Silahkan meng-assign role pengelola asset di dashboard!</p>
             </li>
             <li>
