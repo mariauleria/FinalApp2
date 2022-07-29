@@ -90,7 +90,7 @@ if(isset($_POST['save'])){
             
             <div>
                 <button type="submit" name="save">Save</button>
-                <button onclick="location.reload();">Cancel</button>
+                <a href="./index.php">Cancel</a>
             </div>
         </form>
     <?php endif; ?>
