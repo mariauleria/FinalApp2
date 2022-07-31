@@ -79,7 +79,7 @@ function hapusAsset($asset_id){
 }
 
 if(!empty($_GET['id'])){
-    $asset_id = $_GET['id'];
+    $asset_id = sanitize_input($_GET['id']);
 
     if(hapusAsset($asset_id) > 0){
         echo "

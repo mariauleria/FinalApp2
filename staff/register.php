@@ -25,6 +25,15 @@ if(isset($_SESSION['login'])){
     ";
     exit;
 }
+else if(isset($_SESSION['login-SA'])){
+    echo "
+    <script>
+        alert('Anda tidak punya akses ke halaman ini!');
+        document.location.href = 'superadmin/';
+    </script>
+    ";
+    exit;
+}
 
 if(isset($_POST['register'])){
 

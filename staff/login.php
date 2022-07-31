@@ -26,6 +26,15 @@ if(isset($_SESSION['login'])){
     ";
     exit;
 }
+else if(isset($_SESSION['login-SA'])){
+    echo "
+    <script>
+        alert('Anda tidak punya akses ke halaman ini!');
+        document.location.href = 'superadmin/';
+    </script>
+    ";
+    exit;
+}
 
 require './backend/loginFunction.php';
 
@@ -67,6 +76,7 @@ if(isset($_POST['login'])){
     
     <div class="container w-25 text-center containerStyling">
 
+<<<<<<< HEAD
     <img src="../img/logo-binus.png" class="logoBinus"/>
 
         <h1 class="pt-5 pb-4">Staff Login</h1>
@@ -109,6 +119,5 @@ if(isset($_POST['login'])){
             </div>
         </form>
     </div>
-
 </body>
 </html>
