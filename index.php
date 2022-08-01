@@ -49,26 +49,26 @@
         <?php if(!$requests) :?>
             <h2>You have no requests.</h2>
         <?php else :?>
-            <h2>Your requests</h2>
-            <table border="1" cellpadding="10" cellspacing="0">
-                <tr>
-                    <th>No</th>
-                    <th>Request</th>
-                    <th>Book date</th>
-                    <th>Return date</th>
-                    <th>Item (qty)</th>
-                    <th>Status</th>
-                    <th>Action</th>
+            <h2 class="mb-4">Your requests</h2>
+            <table class="table" cellpadding="10" cellspacing="0">
+                <tr class="row">
+                    <th class="col-1">No</th>
+                    <th class="col-2">Request</th>
+                    <th class="col-2">Book date</th>
+                    <th class="col-2">Return date</th>
+                    <th class="col-2">Item (qty)</th>
+                    <th class="col-2">Status</th>
+                    <th class="col-1">Action</th>
                 </tr>
 
                 <?php $i = 1; ?>
                 <?php foreach($requests as $req) :?>
-                    <tr>
-                        <td><?= $i; ?></td>
-                        <td><?= $req['request_reason']; ?></td>
-                        <td><?= $req['book_date']; ?></td>
-                        <td><?= $req['return_date']; ?></td>
-                        <td>
+                    <tr class="row">
+                        <td class="col-1"><?= $i; ?></td>
+                        <td class="col-2"><?= $req['request_reason']; ?></td>
+                        <td class="col-2"><?= $req['book_date']; ?></td>
+                        <td class="col-2"><?= $req['return_date']; ?></td>
+                        <td class="col-2">
                             <?php 
                                 $obj = json_decode($req['request_items']);
                                 $items = $obj->items;
@@ -78,10 +78,10 @@
                                 }
                             ?>
                         </td>
-                        <td class="req-status"><?= $req['request_status']; ?></td>
-                        <td>
+                        <td class="req-status col-2"><?= $req['request_status']; ?></td>
+                        <td class="col-1">
                             <?php if($req['request_status'] == 'waiting approval') : ?>
-                                <a href="index.php?id=<?= $req['request_id'] ?>" onclick="return confirm('Request akan di cancel?');">Cancel</a>
+                                <a class="btn btn-primary" href="index.php?id=<?= $req['request_id'] ?>" onclick="return confirm('Request akan di cancel?');">Cancel</a>
                             <?php elseif($req['request_status'] == 'approved') :?>
                                 Silahkan ambil barang sesuai jadwal booking.
                             <?php elseif($req['request_status'] == 'on use') :?>
