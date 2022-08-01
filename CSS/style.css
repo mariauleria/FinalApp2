@@ -1,3 +1,7 @@
+html {
+  height: 100%;
+}
+
 .bodyStyling {
   background-color: #0090d1;
 }
@@ -5,7 +9,6 @@
 .containerStyling {
   background-color: #5cacd2;
   border-radius: 1rem;
-  margin-top: 10%;
 }
 
 .logoBinus {

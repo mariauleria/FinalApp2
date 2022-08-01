@@ -76,7 +76,6 @@ if(isset($_POST['login'])){
     
     <div class="container w-25 text-center containerStyling">
 
-<<<<<<< HEAD
     <img src="../img/logo-binus.png" class="logoBinus"/>
 
         <h1 class="pt-5 pb-4">Staff Login</h1>

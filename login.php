@@ -68,9 +68,9 @@ if(isset($_POST["login"])){
     <!-- External CSS -->
     <link rel="stylesheet" href="CSS/style.css">
 </head>
-<body class="bodyStyling">
+<body class="bodyStyling d-flex flex-column justify-content-center h-100">
     
-    <div class="container w-25 text-center containerStyling">
+    <div class="container w-25 text-center containerStyling ">
 
         <img src="img/logo-binus.png" class="logoBinus"/>
 
@@ -84,29 +84,35 @@ if(isset($_POST["login"])){
 
         <form action="" method="post">
             <div>
-                <div class="text-left">
-                    <label class="h5 mx-4 mb-2" for="email" >Email</label>
-                </div>
-                <div class="input-group mb-3 px-4">
-                    <input type="text" class="form-control" name="email" id="email">
-                    <div class="input-group-append">
-                        <span class="input-group-text" id="basic-addon2">@binus.ac.id</span>
+                <div class="mx-4 mb-3">
+                    <div class="text-left">
+                        <label class="h5" for="email" >Email</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="email" id="email">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">@binus.ac.id</span>
+                        </div>
                     </div>
                 </div>
-                <div class="text-left">                    
-                    <label class="h5 mx-4 mb-2 mt-2" for="password">Password</label>
-                </div>
-                <div class="input-group mb-3 px-4">
-                    <input type="password" class="form-control" name="password" id="password">
-                </div>
-                <div>
-                    <button class="btn btn-primary btn-lg mt-4 w-50" type="submit" name="login">Login</button>
-                </div>
-                <div>
-                    <a class="btn btn-secondary mt-3 w-50" href="./register.php">Register</a>
-                </div>
-                <div>
-                    <a class="btn btn-secondary mt-3 w-50 mb-5" href="./staff/login.php">Staff Portal</a>
+                <div class="mx-4">
+                    <div class="text-left">                    
+                        <label class="h5" for="password">Password</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" class="form-control" name="password" id="password">
+                    </div>
+                </div> 
+                <div class="d-flex flex-column">
+                    <div>
+                        <button class="btn btn-primary btn-lg w-50 mt-4 mb-2" type="submit" name="login">Login</button>
+                    </div>
+                    <div>
+                        <a class="btn btn-secondary w-50 my-2" href="./register.php">Register</a>
+                    </div>
+                    <div>
+                        <a class="btn btn-secondary w-50 mt-2 mb-4" href="./staff/login.php">Staff Portal</a>
+                    </div>
                 </div>
             </div>
         </form>
