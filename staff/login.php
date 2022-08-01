@@ -118,7 +118,7 @@ if(isset($_POST['login'])){
                         <a class="btn btn-secondary my-2 w-50" href="../login.php">Student Portal</a>
                     </div>
                     <div>
-                        <a class="btn btn-secondary mt-2 mb-4 w-50" href="">Login as Superadmin</a>
+                        <a class="btn btn-secondary mt-2 mb-4 w-50" href="./superadmin/login.php">Login as Superadmin</a>
                     </div>
                 </div>
             </div>
