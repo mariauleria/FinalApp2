@@ -5,10 +5,8 @@ include './complement/header.php';
 include '../backend/dbaset.php';
 
 $kode = $_SESSION['curr-user']->user_kode_prodiv;
-$query = "SELECT * FROM assetcategory WHERE asset_kode_prodi = $1";
-$result = pg_prepare($dbconn, "", $query);
-$result = pg_execute($dbconn, "", array($kode));
-$result = pg_fetch_assoc($result);
+$query = "SELECT * FROM assetcategory WHERE asset_kode_prodi = '$kode';";
+$result = query($query);
 
 if(isset($_POST['submit'])){
 
@@ -54,11 +52,10 @@ if(isset($_POST['submit'])){
                 Asset Type <br>
                 <?php 
                 // DONE: fix kalau belum ada aset nya sama sekali
+                
                 if($result) :
-                    $results = array();
-                    array_push($results, $result);
-
-                    foreach($results as $res) :?>
+                    //DONE: fix kenapa ini gamau muncul asset category ke 2 dan 3 nya
+                    foreach($result as $res) :?>
                         <input type="radio" name="asset-category" id="default" value="<?= $res['category_id'] ?>"><?= $res['asset_name'] ?><br>
                     <?php endforeach; ?>
                 <?php endif; ?>
