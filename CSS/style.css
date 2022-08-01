@@ -3,17 +3,17 @@ html {
 }
 
 .bodyStyling {
-  background-color: #0090d1;
+  background-color: #ffffff;
 }
 
 .containerStyling {
   background-color: #5cacd2;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
 }
 
 .logoBinus {
-  width: 20rem;
-  height: 12rem;
+  width: 350px;
+  height: 200px;
   margin: 0;
 }
 
