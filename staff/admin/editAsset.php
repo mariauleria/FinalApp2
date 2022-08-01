@@ -49,23 +49,23 @@ if(isset($_POST['submit'])){
 ?>
 
 <?php if($asset_id) :?>
-    <main>
-        <h2>Update Data Asset</h2>
+    <main class="asset-container">
+        <h2 class="mb-4">Update Data Asset</h2>
 
         <form action="" method="post" id="update-asset">
-            <ul>
-                <li>
-                    <label for="serial-number">Serial Number</label>
-                    <input type="text" name="serial-number" id="serial-number" value="<?= $result['asset_sn'] ?>" required>
-                </li>
-                <li>
-                    <label for="asset-status">Status Asset</label>
+            <div>
+                <div class="input-group d-flex my-4">
+                    <label class="w-25" for="serial-number">Serial Number</label>
+                    <input class="w-75" type="text" name="serial-number" id="serial-number" value="<?= $result['asset_sn'] ?>" required>
+                </div>
+                <div class="input-group d-flex my-4">
+                    <label class="w-25" class="w-25" for="asset-status">Status Asset</label>
                     <?php if($result['asset_status'] == 'on use') : ?>
-                        <select name="asset-status" id="asset-status" required>
+                        <select class="w-75" name="asset-status" id="asset-status" required>
                             <option value="on use" selected>On Use</option>
                         </select>
                     <?php else: ?>
-                        <select name="asset-status" id="asset-status" required>
+                        <select class="w-75" name="asset-status" id="asset-status" required>
                             <?php if($result['asset_status'] == 'in storage') :?>
                                 <option value="in storage" selected>Available</option>
                                 <option value="not available">Not Available</option>
@@ -75,21 +75,21 @@ if(isset($_POST['submit'])){
                             <?php endif; ?>
                         </select>
                     <?php endif; ?>
-                </li>
-                <li>
+                </div>
+                <div class="input-group d-flex my-4">
                     <input type="hidden" name="curr-location" value="<?= $result['asset_curr_location'] ?>">
-                    <label for="storage-location">Storage Location</label>
-                    <input type="text" name="storage-location" id="storage-location" value="<?= $result['asset_assigned_location'] ?>" required>
-                </li>
-                <li>
-                    <label for="brand">Brand</label>
-                    <input type="text" name="brand" id="brand" value="<?= $result['asset_brand'] ?>" required>
-                </li>
-                <li>
+                    <label class="w-25" for="storage-location">Storage Location</label>
+                    <input class="w-75" type="text" name="storage-location" id="storage-location" value="<?= $result['asset_assigned_location'] ?>" required>
+                </div>
+                <div class="input-group d-flex my-4">
+                    <label class="w-25" for="brand">Brand</label>
+                    <input class="w-75" type="text" name="brand" id="brand" value="<?= $result['asset_brand'] ?>" required>
+                </div>
+                <div>
                     <input type="hidden" name="asset-id" value="<?= $result['asset_id'] ?>">
-                    <button type="submit" name="submit">Submit</button>
-                </li>
-            </ul>
+                    <button class="btn btn-primary btn-lg" type="submit" name="submit">Submit</button>
+                </div>
+            </div>
         </form>
     </main>
 <?php else: notValid(); ?>
