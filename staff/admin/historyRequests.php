@@ -28,7 +28,7 @@ $requests = query($query);
 
 ?>
 
-<main>
+<main class="asset-container">
     <div class="requests-container">
         <?php if(!$requests) :?>
             <h2>No requests.</h2>
