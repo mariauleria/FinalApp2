@@ -30,7 +30,7 @@
 </head>
 <body >
     <header class="headerBodyStyling">
-        <div class="user-name p-5">
+        <div class="user-name mx-5 py-4">
             <h1 class="greetings">
                 Hello, <?php echo $_SESSION['curr-user']->username;?>
             </h1>
