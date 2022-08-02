@@ -104,12 +104,12 @@ if(isset($_POST['submit'])){
                     </d>
                     <div>
                         <h4 class="my-3">Alasan Peminjaman</h4>
-                        <textarea name="request-reason" id="request-reason" cols="60" rows="5" required></textarea>
+                        <textarea  class="form-control" name="request-reason" id="request-reason" rows="5" required></textarea>
                     </d>
                     <div>
                         <input type="hidden" name="book-date" value="<?= date("Y-m-d H:i", $book_date) ?>">
                         <input type="hidden" name="return-date" value="<?= date("Y-m-d H:i", $return_date) ?>">
-                        <button class="btn btn-primary my-1" type="submit" name="submit">Submit</button>
+                        <button class="btn btn-primary my-3" type="submit" name="submit">Submit</button>
                     </div>
                 </div>
             </form>

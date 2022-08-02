@@ -155,12 +155,12 @@ $requests = query($query);
                                 }
                                 ?>
                                 <form method="post">
-                                    <button type="submit" name="taken-<?= $req['request_id'] ?>" value="taken">Barang sudah diambil</button>
+                                    <button class="btn btn-primary"  type="submit" name="taken-<?= $req['request_id'] ?>" value="taken">Barang sudah diambil</button>
                                 </form>
                             <?php elseif($req['request_status'] == 'on use') :?>
 
                                 <!-- TO DO: buat pdf generate receiptnya -->
-                                <button>Download Receipt</button>
+                                <button class="btn btn-primary" >Download Receipt</button>
 
                                 <!-- DONE: buat lihat keterangan pengembalian -->
                                 <?php if($req['flag_return'] == 'f' || (!$req['flag_return'] && $req['realize_return_date'])) :?>
