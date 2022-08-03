@@ -63,3 +63,5 @@ CREATE TABLE requests(
 			REFERENCES users(user_ID)
 			ON DELETE CASCADE
 );
+
+INSERT INTO prodiv(kode_prodiv, num_approver) VALUES ('IT', 1), ('DKV', 2), ('DI', 2);
