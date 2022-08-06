@@ -174,7 +174,17 @@ function newRequest($data){
     $statement = pg_prepare($dbconn, "", $query);
     $statement = pg_execute($dbconn, "", array($book_date, $return_date, $request_reason, $request_status, $user_id, $fin, $num_approver));
 
-    return pg_affected_rows($statement);
+    $temp = $_SESSION['curr-user']->user_kode_prodiv;
+    $receiver = "SELECT user_email FROM users WHERE user_kode_prodiv = '$temp' AND user_role = 'Admin';";
+    $receiver = pg_query($receiver);
+    $receiver = pg_fetch_assoc($receiver)['user_email'];
+
+    $subyek = 'REQUEST PEMINJAMAN ALAT LAB';
+    $pesan = 'Ada request peminjaman alat lab baru dari ' . $_SESSION['curr-user']->username;
+
+    if(sendMail($receiver, $subyek, $pesan)){
+        return pg_affected_rows($statement);
+    }
 }
 
 
