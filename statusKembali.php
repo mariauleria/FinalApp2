@@ -20,7 +20,7 @@ function notValid(){
 
 
 <?php if(!empty($_GET['id'])) : ?>
-    <main>
+    <main class="asset-container">
     <?php 
 
     $query = "SELECT * FROM requests WHERE request_id = $request_id AND request_status = 'on use';";
@@ -34,40 +34,40 @@ function notValid(){
 
     ?>
 
-    <h2>Keterangan Kembali Pinjaman</h2>
+    <h2 class="mb-4">Keterangan Kembali Pinjaman</h2>
 
-    <ul>
-        <li>
+    <div>
+        <div class="input-group d-flex my-4">
             <?php
                 $temp = $result['user_id'];
                 $query = "SELECT username, binusian_id FROM users WHERE user_id = $temp";
                 $user = query($query);
             ?>
-            Peminjam: <?= $user[0]['username'] ?>
-            <br>
-            Binusian ID: <?= $user[0]['binusian_id'] ?>
-        </li>
-        <li>
-            Periode peminjaman:
-            <br>
+            <label class="w-25">Peminjam:</label> <?= $user[0]['username'] ?>
+        </div>
+        <div class="input-group d-flex my-4">
+            <label class="w-25">Binusian ID:</label> <?= $user[0]['binusian_id'] ?>
+        </div>
+        <div class="input-group d-flex my-4">
+            <label class="w-25">Periode peminjaman:</label>
             <?= $result['book_date'] . " - " . $result['return_date'] ?>
-        </li>
-        <li>
-            Tanggal submit pengembalian: <?= $result['realize_return_date'] ?>
-        </li>
-        <li>
-            Keperluan:
+        </div>
+        <div class="input-group d-flex my-4">
+            <label class="w-25">Tanggal submit pengembalian:</label> <?= $result['realize_return_date'] ?>
+        </div>
+        <div class="input-group d-flex my-4">
+            <label class="w-25">Keperluan:</label>
             <br>
-            <textarea name="" id="" cols="50" rows="5" readonly><?= $result['request_reason'] ?></textarea>
-        </li>
-        <li>
+            <textarea class="w-75 form-control" name="" id="" cols="50" rows="5" readonly><?= $result['request_reason'] ?></textarea>
+        </div>
+        <div class="input-group d-flex my-4">
             <?php
                 $obj = json_decode($result['request_items']);
                 $obj =  $obj->items;
                 $i = 1;
             ?>
-            Barang yang dikembalikan:
-            <table border="1" cellpadding="10" cellspacing="0">
+            <label class="w-25">Barang yang dikembalikan:</label>
+            <table class="w-75 table" cellpadding="10" cellspacing="0">
                 <tr>
                     <th>No.</th>
                     <th>Nama Asset</th>
@@ -81,20 +81,20 @@ function notValid(){
                     </tr>
                 <?php $i++; endforeach; ?>
             </table>
-        </li>
-        <li>
-            Kondisi barang: 
+        </div>
+        <div class="input-group d-flex my-4">
+           <label class="w-25">Kondisi barang:</label> 
             <?php 
                 $kondisi = explode('#', $result['return_condition']);
                 echo $kondisi[0];
             ?>
-        </li>
-        <li>
-            Notes pengembalian barang:
+        </div>
+        <div class="input-group d-flex my-4">
+            <label class="w-25">Notes pengembalian barang:</label>
             <br>
-            <textarea name="" id="" cols="50" rows="5" readonly><?= $kondisi[1] ?></textarea>
-        </li>
-    </ul>
+            <textarea class="w-75 form-control" name="" id="" cols="50" rows="5" readonly><?= $kondisi[1] ?></textarea>
+        </div>
+    </div>
 
     </main>
 <?php else: notValid(); ?>

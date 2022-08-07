@@ -74,7 +74,7 @@ if(isset($_POST['submit'])){
             <div>
                 <button class="btn btn-primary btn-lg" type="submit" name="submit">Submit</button>
             </div>
-        </ul>
+        </div>
     </form>
 
     <script>

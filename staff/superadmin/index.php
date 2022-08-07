@@ -9,27 +9,25 @@ $result = query($query);
 $i = 1;
 ?>
 
-<main>
-    <h2>BINUS User Group</h2>
-
-    <a href="insertNewDept.php">Add New Department</a>
+<main class="asset-container">
+    <h2 class="mb-4">BINUS User Group</h2>
 
     <?php if(!$result) :?>
         <h2>No Groups</h2>
     <?php else: ?>
-        <table border="1" cellpadding="10" cellspacing="0">
-            <tr>
-                <th>No</th>
-                <th>Nama Departemen</th>
-                <th>Jumlah User</th>
-                <th>Aksi</th>
+        <table class="table" cellpadding="10" cellspacing="0">
+            <tr class="row">
+                <th class="col-3">No</th>
+                <th class="col-3">Nama Departemen</th>
+                <th class="col-3">Jumlah User</th>
+                <th class="col-3">Aksi</th>
             </tr>
 
             <?php foreach($result as $res) :?>
-            <tr>
-                <td><?= $i ?></td>
-                <td><?= $res['kode_prodiv'] ?></td>
-                <td>
+            <tr class="row">
+                <td class="col-3"><?= $i ?></td>
+                <td class="col-3"><?= $res['kode_prodiv'] ?></td>
+                <td class="col-3">
                     <?php 
                     
                     $kode = $res['kode_prodiv'];
@@ -41,9 +39,11 @@ $i = 1;
                     
                     ?>
                 </td>
-                <td><a href="./detailGroup.php?code=<?= $res['kode_prodiv'] ?>">Details</a></td>
+                <td class="col-3"><a class="btn btn-primary" href="./detailGroup.php?code=<?= $res['kode_prodiv'] ?>">Details</a></td>
             </tr>
             <?php $i++; endforeach; ?>
         </table>
     <?php endif; ?>
+
+    <a class="btn btn-primary" href="insertNewDept.php">Add New Department</a>
 </main>

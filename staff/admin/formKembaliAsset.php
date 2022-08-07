@@ -75,7 +75,7 @@ if(isset($_POST['submit'])){
 ?>
 
 <?php if(!empty($_GET['id'])) :?>
-<main>
+<main class="asset-container">
 
 <?php 
 
@@ -90,43 +90,42 @@ if(isset($_POST['submit'])){
 
 ?>
 
-    <h2>Keterangan Kembali Pinjaman</h2>
+    <h2 class="mb-4">Keterangan Kembali Pinjaman</h2>
 
-    <ul>
-        <li>
-            Pinjaman nomor: <?= $result['request_id'] ?>
-        </li>
-        <li>
+    <div>
+        <div class="input-group d-flex my-4">
+            <label class="w-25">Pinjaman nomor:</label> <?= $result['request_id'] ?>
+        </div>
+        <div class="input-group d-flex my-4">
             <?php
                 $temp = $result['user_id'];
                 $query = "SELECT username, binusian_id FROM users WHERE user_id = $temp";
                 $user = query($query);
             ?>
-            Peminjam: <?= $user[0]['username'] ?>
-            <br>
-            Binusian ID: <?= $user[0]['binusian_id'] ?>
-        </li>
-        <li>
-            Periode peminjaman:
-            <br>
+            <label class="w-25">Peminjam:</label> <?= $user[0]['username'] ?>
+        </div>
+        <div class="input-group d-flex my-4">
+            <label class="w-25">Binusian ID:</label> <?= $user[0]['binusian_id'] ?>
+        </div>
+        <div class="input-group d-flex my-4">
+            <label class="w-25">Periode peminjaman:</label>
             <?= $result['book_date'] . " - " . $result['return_date'] ?>
-        </li>
-        <li>
-            Tanggal submit pengembalian: <?= $result['realize_return_date'] ?>
-        </li>
-        <li>
-            Keperluan:
-            <br>
-            <textarea name="" id="" cols="50" rows="5" readonly><?= $result['request_reason'] ?></textarea>
-        </li>
-        <li>
+        </div>
+        <div class="input-group d-flex my-4">
+            <label class="w-25">Tanggal submit pengembalian:</label> <?= $result['realize_return_date'] ?>
+        </div>
+        <div class="input-group d-flex my-4">
+            <label class="w-25">Keperluan:</label>
+            <textarea class="form-control" name="" id="" cols="50" rows="5" readonly><?= $result['request_reason'] ?></textarea>
+        </div>
+        <div class="input-group d-flex my-4">
             <?php
                 $obj = json_decode($result['request_items']);
                 $obj =  $obj->items;
                 $i = 1;
             ?>
-            Barang yang dikembalikan:
-            <table border="1" cellpadding="10" cellspacing="0">
+            <label class="w-25">Barang yang dikembalikan:</label>
+            <table class="w-75 table" cellpadding="10" cellspacing="0">
                 <tr>
                     <th>No.</th>
                     <th>Nama Asset</th>
@@ -142,29 +141,29 @@ if(isset($_POST['submit'])){
                     </tr>
                 <?php $i++; endforeach; ?>
             </table>
-        </li>
-        <li>
-            Kondisi barang: 
+        </div>
+        <div class="input-group d-flex my-4">
+            <label class="w-25">Kondisi barang:</label> 
             <?php 
                 $kondisi = explode('#', $result['return_condition']);
                 echo $kondisi[0];
             ?>
-        </li>
-        <li>
-            Notes pengembalian barang:
+        </div>
+        <div class="input-group d-flex my-4">
+            <label class="w-25">Notes pengembalian barang:</label>
             <br>
-            <textarea name="" id="" cols="50" rows="5" readonly><?= $kondisi[1] ?></textarea>
-        </li>
+            <textarea class="form-control" name="" id="" cols="50" rows="5" readonly><?= $kondisi[1] ?></textarea>
+        </div>
 
         <?php if($result['flag_return']) :?>
-        <li>
+        <div class="input-group d-flex my-4">
                 <form method="post">
-                    <input type="submit" value="approve" name="submit">
-                    <input type="submit" value="reject" name="submit">
+                    <input class="btn btn-primary btn-lg" type="submit" value="approve" name="submit">
+                    <input class="btn btn-danger btn-lg mx-2" type="submit" value="reject" name="submit">
                 </form>
-        </li>
+        </div>
         <?php endif; ?>
-    </ul>
+    </div>
 
 </main>
 <?php else: notValid(); ?>

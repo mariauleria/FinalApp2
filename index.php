@@ -47,25 +47,25 @@
 <main class="asset-container">
     <div>
         <?php if(!$requests) :?>
-            <h2>You have no requests.</h2>
+            <h2 class="mb-4">You have no requests.</h2>
         <?php else :?>
             <h2 class="mb-4">Your requests</h2>
             <table class="table" cellpadding="10" cellspacing="0">
                 <tr class="row">
                     <th class="col-1">No</th>
-                    <th class="col-2">Request</th>
+                    <th class="col-1">Request</th>
                     <th class="col-2">Book date</th>
                     <th class="col-2">Return date</th>
                     <th class="col-2">Item (qty)</th>
-                    <th class="col-2">Status</th>
-                    <th class="col-1">Action</th>
+                    <th class="col-1">Status</th>
+                    <th class="col-3">Action</th>
                 </tr>
 
                 <?php $i = 1; ?>
                 <?php foreach($requests as $req) :?>
                     <tr class="row">
                         <td class="col-1"><?= $i; ?></td>
-                        <td class="col-2"><?= $req['request_reason']; ?></td>
+                        <td class="col-1"><?= $req['request_reason']; ?></td>
                         <td class="col-2"><?= $req['book_date']; ?></td>
                         <td class="col-2"><?= $req['return_date']; ?></td>
                         <td class="col-2">
@@ -78,8 +78,8 @@
                                 }
                             ?>
                         </td>
-                        <td class="req-status col-2"><?= $req['request_status']; ?></td>
-                        <td class="col-1">
+                        <td class="req-status col-1"><?= $req['request_status']; ?></td>
+                        <td class="col-3">
                             <?php if($req['request_status'] == 'waiting approval') : ?>
                                 <a class="btn btn-primary" href="index.php?id=<?= $req['request_id'] ?>" onclick="return confirm('Request akan di cancel?');">Cancel</a>
                             <?php elseif($req['request_status'] == 'approved') :?>
@@ -87,7 +87,7 @@
                             <?php elseif($req['request_status'] == 'on use') :?>
 
                                 <!-- TO DO: buat pdf generate receiptnya -->
-                                <button>Download Receipt</button>
+                                <button class="btn btn-primary">Download Receipt</button>
 
                                 <!-- DONE: pengembalian barang -->
                                 <!-- DONE: udah dibenerin :D -->
@@ -104,10 +104,10 @@
                                     $b = (int)$b->format('His');
                                     if($b >= $a):
                                         if(!$req['flag_return']) :?>       
-                                            <a href="kembaliAsset.php?id=<?= htmlspecialchars($req['request_id']) ?>">Kembalikan Barang</a>
+                                            <a class="btn btn-primary" href="kembaliAsset.php?id=<?= htmlspecialchars($req['request_id']) ?>">Kembalikan Barang</a>
                                         <?php else: ?>
                                             <!-- DONE: buat lihat status pengembaliannya -->
-                                            <a href="statusKembali.php?id=<?= htmlspecialchars($req['request_id']) ?>">Lihat Status Pengembalian</a>
+                                            <a class="btn btn-primary" href="statusKembali.php?id=<?= htmlspecialchars($req['request_id']) ?>">Lihat Status Pengembalian</a>
                                         <?php endif; ?>
                                     <?php endif; ?>
                                 <?php endif; ?>

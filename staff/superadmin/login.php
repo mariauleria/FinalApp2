@@ -74,11 +74,14 @@ if(isset($_POST['login'])){
                         <label class="h5" for="password">Password</label>
                     </div>
                     <div class="input-group">
-                        <input type="text" class="form-control" name="password" id="password" required>
+                        <input type="password" class="form-control" name="password" id="password" required>
                     </div>
                 </div>
-                <div class="mt-5 mb-4">
-                    <button class="btn btn-primary btn-lg w-50 mt-4 mb-2" type="submit" name="login">Login</button>
+                <div class="mt-5">
+                    <button class="btn btn-primary btn-lg w-50" type="submit" name="login">Login</button>
+                </div>
+                <div class="my-3">
+                    <a class="btn btn-secondary w-50" href="../../staff/login.php">Staff Portal</a>
                 </div>
             </div>
         </form>

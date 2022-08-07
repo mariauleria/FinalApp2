@@ -164,7 +164,7 @@ $requests = query($query);
 
                                 <!-- DONE: buat lihat keterangan pengembalian -->
                                 <?php if($req['flag_return'] == 'f' || (!$req['flag_return'] && $req['realize_return_date'])) :?>
-                                    <a href="formKembaliAsset.php?id=<?= htmlspecialchars($req['request_id']) ?>">Form Kembali</a>
+                                    <a class="btn btn-primary" href="formKembaliAsset.php?id=<?= htmlspecialchars($req['request_id']) ?>">Form Kembali</a>
                                 <?php endif; ?>
 
                             <?php endif; ?>

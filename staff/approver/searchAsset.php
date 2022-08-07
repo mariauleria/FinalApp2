@@ -9,31 +9,31 @@
     $requests = query($query);
 ?>
 
-<main>
-    <div class="asset-container">
-        <h2><?= $user_prodi . " Assets"; ?></h2>
+<main class="asset-container">
+    <div>
+        <h2 class="mb-4"><?= $user_prodi . " Assets"; ?></h2>
 
         <?php if(!$requests) :?>
-            <p>Tidak ada asset tersedia silahkan tambahkan asset.</p>
+            <h2 class="mb-4">Tidak ada asset tersedia silahkan tambahkan asset.</h2>
         <?php else: ?>
 
-            <table border="1" cellpadding="10" cellspacing="0">
-                <tr>
-                    <th>No</th>
-                    <th>Nama</th>
-                    <th>Jumlah</th>
-                    <th>Aksi</th>
+            <table class="table" cellpadding="10" cellspacing="0">
+                <tr class="row">
+                    <th class="col-1">No</th>
+                    <th class="col-5">Nama</th>
+                    <th class="col-5">Jumlah</th>
+                    <th class="col-1">Aksi</th>
                 </tr>
 
                 <?php $i = 1; ?>
                 <?php foreach($requests as $req) :?>
-                    <tr>
-                        <td><?= $i; ?></td>
-                        <td><?= $req['asset_name']; ?></td>
-                        <td><?= $req['asset_qty']; ?></td>
-                        <td>
+                    <tr class="row">
+                        <td class="col-1"><?= $i; ?></td>
+                        <td class="col-5"><?= $req['asset_name']; ?></td>
+                        <td class="col-5"><?= $req['asset_qty']; ?></td>
+                        <td class="col-1">
                             <?php if($req['asset_qty'] != 0) :?>
-                                <a href="./detailAsset.php?category_id=<?= $req['category_id'] ?>&asset_name=<?= $req['asset_name'] ?>">Detail</a>
+                                <a class="btn btn-primary" href="./detailAsset.php?category_id=<?= $req['category_id'] ?>&asset_name=<?= $req['asset_name'] ?>">Detail</a>
                             <?php endif; ?>
                         </td>
                     </tr>

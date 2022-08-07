@@ -36,7 +36,7 @@
             </h1>
         </div>
 
-        <div class="pageContainer ">
+        <div class="pageContainer">
             <nav class="w-100">
                 <ul class="nav-links d-flex">
                     <li class="nav-link"><a href="./index.php">Dashboard</a></li>

@@ -11,28 +11,28 @@ $result = query($query);
 
 ?>
 
-<main>
-    <div class="asset-container">
-        <h2><?= "Asset Type: " . $_GET['asset_name'] ?></h2>
-        <table border="1" cellpadding="10" cellspacing="0">
-            <tr>
-                <th>Asset ID</th>
-                <th>Serial Number</th>
-                <th>Current Status</th>
-                <th>PIC</th>
-                <th>Current Location</th>
-                <th>Stored at</th>
-                <th>Brand</th>
-                <th>Booked At</th>
+<main class="asset-container">
+    <div>
+        <h2 class="mb-4"><?= "Asset Type: " . $_GET['asset_name'] ?></h2>
+        <table class="table text-center" cellpadding="10" cellspacing="0">
+            <tr class="row">
+                <th class="col-1">Asset ID</th>
+                <th class="col-2">Serial Number</th>
+                <th class="col-1">Current Status</th>
+                <th class="col-1">PIC</th>
+                <th class="col-2">Current Location</th>
+                <th class="col-1">Stored at</th>
+                <th class="col-2">Brand</th>
+                <th class="col-2">Booked At</th>
             </tr>
 
             <?php $i = 1; ?>
             <?php foreach($result as $res) :?>
-                <tr>
-                    <td><?= $res['asset_id'] ?></td>
-                    <td><?= $res['asset_sn'] ?></td>
-                    <td><?= $res['asset_status'] ?></td>
-                        <td>
+                <tr class="row">
+                    <td class="col-1"><?= $res['asset_id'] ?></td>
+                    <td class="col-2"><?= $res['asset_sn'] ?></td>
+                    <td class="col-1"><?= $res['asset_status'] ?></td>
+                        <td class="col-1">
                         <?php if($res['asset_status'] == 'on use') :?>
                             <?php 
                                 $ob = json_decode($res['asset_booked_date']);
@@ -61,10 +61,10 @@ $result = query($query);
                             -
                         <?php endif; ?>
                         </td>
-                    <td><?= $res['asset_curr_location'] ?></td>
-                    <td><?= $res['asset_assigned_location'] ?></td>
-                    <td><?= $res['asset_brand'] ?></td>
-                    <td>
+                    <td class="col-2"><?= $res['asset_curr_location'] ?></td>
+                    <td class="col-1"><?= $res['asset_assigned_location'] ?></td>
+                    <td class="col-2"><?= $res['asset_brand'] ?></td>
+                    <td class="col-2">
                         <?php 
                         $obj = json_decode($res['asset_booked_date']);
                         if($obj){
@@ -81,7 +81,7 @@ $result = query($query);
                                     continue;
                                 }
                                 else{
-                                    echo $re->book_date . " | " . $re->return_date . "<br>";
+                                    echo $re->book_date . " <br> " . $re->return_date . "<br>";
                                 }
                             }
                         }

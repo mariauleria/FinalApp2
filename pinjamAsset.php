@@ -104,7 +104,7 @@ if(isset($_POST['submit'])){
                     </d>
                     <div>
                         <h4 class="my-3">Alasan Peminjaman</h4>
-                        <textarea  class="form-control" name="request-reason" id="request-reason" rows="5" required></textarea>
+                        <textarea class="form-control" name="request-reason" id="request-reason" rows="5" required></textarea>
                     </d>
                     <div>
                         <input type="hidden" name="book-date" value="<?= date("Y-m-d H:i", $book_date) ?>">
