@@ -171,7 +171,7 @@ function reject($data){
 
     if(pg_affected_rows($query) > 0){
 
-        //TO DO: kirim emailnya ke student klo di reject requestnya
+        //DONE: kirim emailnya ke student klo di reject requestnya
         $query = "SELECT * FROM requests WHERE request_id = $data;";
         $result = query($query);
         $result = $result[0];
