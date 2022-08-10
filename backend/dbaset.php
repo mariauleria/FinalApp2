@@ -29,9 +29,9 @@ function query($query){
 }
 
 function sendMail($receiver, $subyek, $message){
-    $email_sender = 'maria.auleria@binus.edu';
-    $password = 'Code-lyoko1';
-    $name_sender = 'no-reply';
+    $email_sender = 'assetmanagement.binusbdg@gmail.com';
+    $password = 'doboosfdswbahoau';
+    $name_sender = 'asset management';
 
     $email_receiver = $receiver;
     $subjek = $subyek;
@@ -40,15 +40,15 @@ function sendMail($receiver, $subyek, $message){
     $mail = new PHPMailer();
     $mail->isSMTP();
 
-    $mail->Host = 'smtp.office365.com';
+    $mail->Host = 'smtp.gmail.com';
     $mail->Port = 587;
     $mail->SMTPAuth = true;
-    $mail->SMTPSecure = 'tsl';
+    $mail->SMTPSecure = 'tls';
     // $mail->SMTPDebug = 2;
 
     $mail->Username = $email_sender;
     $mail->Password = $password;
-    $mail->setFrom('asset.management@binus.ac.id', $name_sender);
+    $mail->setFrom($email_sender, $name_sender);
     
     $mail->addAddress($email_receiver);
     $mail->Subject = $subjek;

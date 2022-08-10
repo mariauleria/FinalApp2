@@ -17,13 +17,14 @@ function notValid(){
 $request_id = $_GET['id'];
 
 if(isset($_POST['submit'])){
+
+    $query = "SELECT request_items, user_id FROM requests WHERE request_id = $request_id";
+    $row = query($query);
+    $temp = $row[0]['user_id'];
+    $row = json_decode($row[0]['request_items']);
+
     if($_POST['submit'] == 'approve'){
         // DONE: buat approved nya
-
-        $query = "SELECT request_items FROM requests WHERE request_id = $request_id";
-        $row = query($query);
-        $row = json_decode($row[0]['request_items']);
-        
         foreach($row->items as $rw){
             $rws = $rw->asset_id;
 
@@ -44,13 +45,22 @@ if(isset($_POST['submit'])){
             $statement = pg_execute($dbconn, "", array($request_id));
 
             if(pg_affected_rows($statement) > 0){
-                echo "
-                <script>
-                    alert('pengembalian di approve!');
-                    document.location.href = 'index.php';
-                </script>
-                ";
-                exit;
+                $receiver = "SELECT user_email FROM users WHERE user_id = $temp;";
+                $receiver = pg_query($receiver);
+                $receiver = pg_fetch_assoc($receiver)['user_email'];
+
+                $subyek = 'PENGEMBALIAN DI APPROVE';
+                $pesan = 'Selamat pengembalian anda di approve!';
+
+                if(sendMail($receiver, $subyek, $pesan)){
+                    echo "
+                    <script>
+                        alert('pengembalian di approve!');
+                        document.location.href = 'index.php';
+                    </script>
+                    ";
+                    exit;
+                }
             }
         }
     }
@@ -61,13 +71,22 @@ if(isset($_POST['submit'])){
         $statement = pg_execute($dbconn, "", array($request_id));
 
         if(pg_affected_rows($statement) > 0){
-            echo "
-            <script>
-                alert('pengembalian di reject!');
-                document.location.href = 'index.php';
-            </script>
-            ";
-            exit;
+            $receiver = "SELECT user_email FROM users WHERE user_id = $temp;";
+            $receiver = pg_query($receiver);
+            $receiver = pg_fetch_assoc($receiver)['user_email'];
+
+            $subyek = 'PENGEMBALIAN DI REJECT';
+            $pesan = 'Mohon maaf pengembalian anda di reject silahkan isi kembali!';
+
+            if(sendMail($receiver, $subyek, $pesan)){
+                echo "
+                <script>
+                    alert('pengembalian di reject!');
+                    document.location.href = 'index.php';
+                </script>
+                ";
+                exit;
+            }
         }
     }
 }

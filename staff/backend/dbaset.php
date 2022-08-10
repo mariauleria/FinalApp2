@@ -1,5 +1,12 @@
 <?php
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+include('phpmailer/src/Exception.php');
+include('phpmailer/src/PHPMailer.php');
+include('phpmailer/src/SMTP.php');
+
 //connecting the database
 $dbconn = pg_connect("host=localhost dbname=LabAssetManagement user=postgres password=12345")or die('Could not connect: ' . pg_last_error());
 
@@ -19,6 +26,36 @@ function query($query){
         $rows[] = $row;
     }
     return $rows;
+}
+
+function sendMail($receiver, $subyek, $message){
+    $email_sender = 'assetmanagement.binusbdg@gmail.com';
+    $password = 'doboosfdswbahoau';
+    $name_sender = 'asset management';
+
+    $email_receiver = $receiver;
+    $subjek = $subyek;
+    $pesan = $message;
+
+    $mail = new PHPMailer();
+    $mail->isSMTP();
+
+    $mail->Host = 'smtp.gmail.com';
+    $mail->Port = 587;
+    $mail->SMTPAuth = true;
+    $mail->SMTPSecure = 'tls';
+    // $mail->SMTPDebug = 2;
+
+    $mail->Username = $email_sender;
+    $mail->Password = $password;
+    $mail->setFrom($email_sender, $name_sender);
+    
+    $mail->addAddress($email_receiver);
+    $mail->Subject = $subjek;
+    $mail->Body = $pesan;
+
+    return $mail->send();
+    
 }
 
 function printAssetId($arr){
@@ -85,6 +122,16 @@ function approve($data){
                 }
 
                 if($flag){
+                    $temp = $result['user_id'];
+                    $receiver = "SELECT user_email FROM users WHERE user_id = $temp;"; //ke studentnya
+                    $receiver = pg_query($receiver);
+                    $receiver = pg_fetch_assoc($receiver)['user_email'];
+                    
+                    $subyek = 'PEMINJAMAN APPROVED';
+                    $pesan = 'Selamat peminjaman anda berhasil di approve! silahkan ambil barang sesuai dengan tanggal peminjaman.';
+
+                    sendMail($receiver, $subyek, $pesan);
+
                     echo "
                     <script>
                         alert('Request berhasil di approve!');
@@ -95,6 +142,20 @@ function approve($data){
                 }
             }
         }else{
+            $temp = $_SESSION['curr-user']->user_kode_prodiv;
+            $receiver = "SELECT user_email FROM users WHERE user_kode_prodiv = '$temp' AND user_role = 'Approver';";
+            $receiver = pg_query($receiver);
+            $receiver = pg_fetch_assoc($receiver)['user_email'];
+            
+            $temp = $result['user_id'];
+            $temp = "SELECT username FROM users WHERE user_id = $temp;";
+            $temp = pg_query($temp);
+            $temp = pg_fetch_assoc($temp)['username'];
+
+            $subyek = 'REQUEST PEMINJAMAN ALAT LAB';
+            $pesan = 'Ada request peminjaman alat lab baru dari ' . $temp;
+
+            sendMail($receiver, $subyek, $pesan);
             return 1;
         }
     }
@@ -109,6 +170,22 @@ function reject($data){
     $query = pg_query($query);
 
     if(pg_affected_rows($query) > 0){
+
+        //TO DO: kirim emailnya ke student klo di reject requestnya
+        $query = "SELECT * FROM requests WHERE request_id = $data;";
+        $result = query($query);
+        $result = $result[0];
+
+        $temp = $result['user_id'];
+        $receiver = "SELECT user_email FROM users WHERE user_id = $temp;"; //ke studentnya
+        $receiver = pg_query($receiver);
+        $receiver = pg_fetch_assoc($receiver)['user_email'];
+        
+        $subyek = 'PEMINJAMAN REJECTED';
+        $pesan = 'Mohon maaf, peminjaman anda tidak disetujui oleh approver. Silahkan pilih tanggal lain untuk meminjam.';
+
+        sendMail($receiver, $subyek, $pesan);
+
         echo "
         <script>
             alert('Request berhasil di reject!');

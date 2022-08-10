@@ -26,13 +26,23 @@ if(isset($_POST['submit'])){
     $statement = pg_execute($dbconn, "", array($return_condition, $request_id));
 
     if(pg_affected_rows($statement) > 0){
-        echo "
-        <script>
-            alert('Pengajuan pengembalian dikirim!');
-            document.location.href = 'index.php';
-        </script>
-        ";
-        exit;
+        $temp = $_SESSION['curr-user']->user_kode_prodiv;
+        $receiver = "SELECT user_email FROM users WHERE user_kode_prodiv = '$temp' AND user_role = 'Admin';";
+        $receiver = pg_query($receiver);
+        $receiver = pg_fetch_assoc($receiver)['user_email'];
+
+        $subyek = 'PENGAJUAN PENGEMBALIAN BARANG';
+        $pesan = $_SESSION['curr-user']->username . ' mengajukan pengembalian barang.';
+
+        if(sendMail($receiver, $subyek, $pesan)){
+            echo "
+            <script>
+                alert('Pengajuan pengembalian dikirim!');
+                document.location.href = 'index.php';
+            </script>
+            ";
+            exit;
+        }
     }
 }
 
