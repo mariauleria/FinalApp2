@@ -30,7 +30,7 @@ function query($query){
 
 function sendMail($receiver, $subyek, $message){
     $email_sender = 'assetmanagement.binusbdg@gmail.com';
-    $password = 'qzqmiosagzyzhqdp';
+    $password = 'qzqmiosagzyzhqdp;';
     $name_sender = 'asset management';
 
     $email_receiver = $receiver;
