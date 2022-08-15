@@ -86,8 +86,10 @@
                                 Silahkan ambil barang sesuai jadwal booking.
                             <?php elseif($req['request_status'] == 'on use') :?>
 
-                                <!-- TO DO: buat pdf generate receiptnya -->
-                                <button>Download Receipt</button>
+                                <!-- DONE: buat pdf generate receiptnya -->
+                                <form action="backend/fpdf/" method="post">
+                                    <button type="submit" name="req_id" value="<?= $req['request_id'] ?>">Download Receipt</button>
+                                </form>
 
                                 <!-- DONE: pengembalian barang -->
                                 <!-- DONE: udah dibenerin :D -->
@@ -114,8 +116,10 @@
                                 
                             <?php elseif($req['request_status'] == 'done'): ?>
 
-                                <!-- TO DO: buat pdf generate receiptnya -->
-                                <button>Download Receipt</button>
+                                <!-- DONE: buat pdf generate receiptnya -->
+                                <form action="backend/fpdf/" method="post">
+                                    <button type="submit" name="req_id" value="<?= $req['request_id'] ?>">Download Receipt</button>
+                                </form>
 
                             <?php elseif($req['request_status'] == 'rejected' || $req['request_status'] == 'canceled') :?>
                                 -

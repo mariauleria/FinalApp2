@@ -90,9 +90,11 @@ $requests = query($query);
                         <td><?= $req['request_reason']; ?></td>
                         <td><?= $req['request_status']; ?></td>
                         <td>
-                            <!-- TO DO: buat pdf generate receiptnya -->
+                            <!-- DONE: buat pdf generate receiptnya -->
                             <?php if($req['request_status'] == 'done') :?>
-                                <button>Download Receipt</button>
+                                <form action="../backend/fpdf/" method="post">
+                                    <button type="submit" name="req_id" value="<?= $req['request_id'] ?>">Download Receipt</button>
+                                </form>
                             <?php elseif($req['request_status'] == 'rejected' || $req['request_status'] == 'canceled') :?>
                                 -
                             <?php endif; ?>

@@ -29,33 +29,33 @@ function query($query){
 }
 
 function sendMail($receiver, $subyek, $message){
-    $email_sender = 'assetmanagement.binusbdg@gmail.com';
-    $password = 'qzqmiosagzyzhqdp;';
-    $name_sender = 'asset management';
+    // $email_sender = 'assetmanagement.binusbdg@gmail.com';
+    // $password = 'qzqmiosagzyzhqdp;';
+    // $name_sender = 'asset management';
 
-    $email_receiver = $receiver;
-    $subjek = $subyek;
-    $pesan = $message;
+    // $email_receiver = $receiver;
+    // $subjek = $subyek;
+    // $pesan = $message;
 
-    $mail = new PHPMailer();
-    $mail->isSMTP();
+    // $mail = new PHPMailer();
+    // $mail->isSMTP();
 
-    $mail->Host = 'smtp.gmail.com';
-    $mail->Port = 587;
-    $mail->SMTPAuth = true;
-    $mail->SMTPSecure = 'tls';
-    // $mail->SMTPDebug = 2;
+    // $mail->Host = 'smtp.gmail.com';
+    // $mail->Port = 587;
+    // $mail->SMTPAuth = true;
+    // $mail->SMTPSecure = 'tls';
+    // // $mail->SMTPDebug = 2;
 
-    $mail->Username = $email_sender;
-    $mail->Password = $password;
-    $mail->setFrom($email_sender, $name_sender);
+    // $mail->Username = $email_sender;
+    // $mail->Password = $password;
+    // $mail->setFrom($email_sender, $name_sender);
     
-    $mail->addAddress($email_receiver);
-    $mail->Subject = $subjek;
-    $mail->Body = $pesan;
+    // $mail->addAddress($email_receiver);
+    // $mail->Subject = $subjek;
+    // $mail->Body = $pesan;
 
-    return $mail->send();
-    
+    // return $mail->send();
+    return true;
 }
 
 function printAssetId($arr){
