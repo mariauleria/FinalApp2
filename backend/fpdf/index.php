@@ -10,6 +10,7 @@ if(isset($_POST['req_id'])){
     $keperluan = $result['request_reason'];
     $book = $result['book_date'];
     $return = $result['return_date'];
+    $lok = $result['lokasi_pinjam'];
     $taken_date = $result['taken_date'];
     $realize_return_date = $result['realize_return_date'];
     $items = $result['request_items'];
@@ -42,14 +43,13 @@ if(isset($_POST['req_id'])){
     $pdf->Ln();
 
     $titikdua = ': ';
-    // $lok = 'ruang multimedia';
 
     $nama = $titikdua . $nama;
     $bid = $titikdua . $bid;
     $prodiv = $titikdua . $prodiv;
     $hp = $titikdua . $hp;
     $keperluan = $titikdua . $keperluan;
-    // $lok = $titikdua . $lok;
+    $lok = $titikdua . $lok;
     $book = $titikdua . $book;
     $return = $titikdua . $return;
 
@@ -59,7 +59,7 @@ if(isset($_POST['req_id'])){
     $pdf->Cell(50, 6, 'No. Handphone', 0, 0); $pdf->Cell(40, 6, $hp, 0, 1);
     $pdf->Ln();
     $pdf->Cell(50, 6, 'Keperluan', 0, 0); $pdf->Cell(40, 6, $keperluan, 0, 1); 
-    // $pdf->Cell(50, 6, 'Peralatan dipakai di', 0, 0); $pdf->Cell(40, 6, $lok, 0, 1); 
+    $pdf->Cell(50, 6, 'Peralatan dipakai di', 0, 0); $pdf->Cell(40, 6, $lok, 0, 1); 
     $pdf->Cell(50, 6, 'Hari, Tanggal/Jam Pinjam', 0, 0); $pdf->Cell(40, 6, $book, 0, 1); 
     $pdf->Cell(50, 6, 'Hari, Tanggal/Jam Kembali', 0, 0); $pdf->Cell(40, 6, $return, 0, 1); 
 
@@ -72,7 +72,7 @@ if(isset($_POST['req_id'])){
     $pdf->Cell(70, 6, 'ID Barang', 1, 1, 'C');
 
     $pdf->SetFont('Arial', '', 11);
-    // TO DO: iterate request_items json
+    // DONE: iterate request_items json
     $i = 1;
     foreach ($items as $item){
         $pdf->Cell(10, 6, $i, 1, 0, 'C');
