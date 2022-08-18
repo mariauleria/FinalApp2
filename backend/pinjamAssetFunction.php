@@ -66,6 +66,7 @@ function newRequest($data){
     $num_approver = $data['num_approver'];
     $book_date = $data['book-date'];
     $return_date = $data['return-date'];
+    $lokasi_pinjam = $data['lokasi-pinjam'];
     $request_reason = sanitize_input($data['request-reason']);
     $request_status = 'waiting approval';
     $user_id = intval($_SESSION['curr-user']->user_id);
@@ -166,13 +167,13 @@ function newRequest($data){
     // echo $fin;
     // echo '<br><br>';
 
-    $query = "INSERT INTO requests(book_date, return_date, request_reason, request_status, user_ID, request_items, num_approver) VALUES ($1, $2, $3, $4, $5, $6, $7);";
+    $query = "INSERT INTO requests(book_date, return_date, request_reason, request_status, user_ID, request_items, num_approver, lokasi_pinjam) VALUES ($1, $2, $3, $4, $5, $6, $7, $8);";
     // $query = "INSERT INTO requests(book_date, return_date, request_reason, request_status, user_ID, request_items) VALUES ('$book_date', '$return_date', '$request_reason', '$request_status', $user_id, '$fin');";
 
     // echo $query;
 
     $statement = pg_prepare($dbconn, "", $query);
-    $statement = pg_execute($dbconn, "", array($book_date, $return_date, $request_reason, $request_status, $user_id, $fin, $num_approver));
+    $statement = pg_execute($dbconn, "", array($book_date, $return_date, $request_reason, $request_status, $user_id, $fin, $num_approver, $lokasi_pinjam));
 
     $temp = $_SESSION['curr-user']->user_kode_prodiv;
     $receiver = "SELECT user_email FROM users WHERE user_kode_prodiv = '$temp' AND user_role = 'Admin';";

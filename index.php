@@ -56,6 +56,7 @@
                     <th>Request</th>
                     <th>Book date</th>
                     <th>Return date</th>
+                    <th>Lokasi Pinjam</th>
                     <th>Item (qty)</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -68,6 +69,7 @@
                         <td><?= $req['request_reason']; ?></td>
                         <td><?= $req['book_date']; ?></td>
                         <td><?= $req['return_date']; ?></td>
+                        <td><?= $req['lokasi_pinjam'] ?></td>
                         <td>
                             <?php 
                                 $obj = json_decode($req['request_items']);

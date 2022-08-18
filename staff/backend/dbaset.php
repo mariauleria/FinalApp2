@@ -214,6 +214,7 @@ function taken($data){
         $query = "SELECT * FROM requests WHERE request_id = $data;";
         $result = query($query);
         $user_id = $result[0]['user_id'];
+        $lokasi_pinjam = $result[0]['lokasi_pinjam'];
         $result = $result[0]['request_items'];        
         $result = json_decode($result);
         $obj = $result->items;
@@ -225,7 +226,12 @@ function taken($data){
         
         $flag = false;
         foreach($assets as $as){
-            $query = "UPDATE assets SET asset_status = 'on use', asset_curr_location = (SELECT user_address FROM users WHERE user_id = $user_id) WHERE asset_id = $as;";
+            if($lokasi_pinjam == 'bawa pulang'){
+                $query = "UPDATE assets SET asset_status = 'on use', asset_curr_location = (SELECT user_address FROM users WHERE user_id = $user_id) WHERE asset_id = $as;";
+            }
+            else{
+                $query = "UPDATE assets SET asset_status = 'on use', asset_curr_location = '$lokasi_pinjam' WHERE asset_id = $as;";
+            }
             $statement = pg_query($query);
 
             if(pg_affected_rows($statement) > 0){

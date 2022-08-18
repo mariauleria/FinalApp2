@@ -103,6 +103,11 @@ if(isset($_POST['submit'])){
                         </table>
                     </li>
                     <li>
+                        <h3>Lokasi Peminjaman</h3>
+                        <label for="lokasi-pinjam">Lokasi pinjam (masukan '<b>bawa pulang</b>' jika alat dibawa pulang ke rumah): </label> <br>
+                        <input type="text" name="lokasi-pinjam" required>
+                    </li>
+                    <li>
                         <h3>Alasan Peminjaman</h3>
                         <textarea name="request-reason" id="request-reason" cols="30" rows="10" required></textarea>
                     </li>

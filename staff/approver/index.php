@@ -6,9 +6,10 @@ include '../backend/dbaset.php';
 
 $kode_prodi = $_SESSION['curr-user']->user_kode_prodiv;
 $query = "
-SELECT user_id, book_date, return_date, request_reason, request_status, request_items, request_id, realize_return_date, flag_return, track_approver
+SELECT user_id, book_date, return_date, request_reason, request_status, request_items, request_id, realize_return_date, flag_return, track_approver, lokasi_pinjam
 FROM (
 	SELECT request_id,
+    lokasi_pinjam,
     realize_return_date,
     flag_return,
     track_approver,
@@ -47,6 +48,7 @@ $requests = query($query);
                     <th>qty</th>
                     <th>Tanggal pinjam</th>
                     <th>Tanggal kembali</th>
+                    <th>Lokasi Peminjaman</th>
                     <th>Keperluan</th>
                     <th>Status peminjaman</th>
                     <th>Aksi</th>
@@ -90,6 +92,7 @@ $requests = query($query);
                         </td>
                         <td><?= $req['book_date']; ?></td>
                         <td><?= $req['return_date']; ?></td>
+                        <td><?= $req['lokasi_pinjam'] ?></td>
                         <td><?= $req['request_reason']; ?></td>
                         <td><?= $req['request_status']; ?></td>
                         <td>
