@@ -156,6 +156,12 @@ function approve($data){
             $pesan = 'Ada request peminjaman alat lab baru dari ' . $temp;
 
             sendMail($receiver, $subyek, $pesan);
+
+            echo "
+            <script>
+                alert('Request berhasil di approve!');
+            </script>
+            ";
             return 1;
         }
     }

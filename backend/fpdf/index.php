@@ -12,6 +12,16 @@ if(isset($_POST['req_id'])){
     $return = $result['return_date'];
     $taken_date = $result['taken_date'];
     $realize_return_date = $result['realize_return_date'];
+    $items = $result['request_items'];
+    $items = json_decode($items);
+    $items = $items->items;
+    if($result['return_condition']){
+        $keterangan = explode('#', $result['return_condition'])[1];
+        $stat = explode('#', $result['return_condition'])[0];
+    }
+    else{
+        $keterangan = $stat = '';
+    }
 
     $user_id = $result['user_id'];
     $query = "SELECT * FROM users WHERE user_id = $user_id;";
@@ -42,7 +52,6 @@ if(isset($_POST['req_id'])){
     // $lok = $titikdua . $lok;
     $book = $titikdua . $book;
     $return = $titikdua . $return;
-    $keterangan = '';
 
     $pdf->SetFont('Arial', '', 11);
     $pdf->Cell(50, 6, 'Nama Peminjam', 0, 0); $pdf->Cell(15, 6, $nama, 0, 1);
@@ -64,16 +73,23 @@ if(isset($_POST['req_id'])){
 
     $pdf->SetFont('Arial', '', 11);
     // TO DO: iterate request_items json
-    // while(){
-        $pdf->Cell(10, 6, '1', 1, 0, 'C');
-        $pdf->Cell(80, 6, 'Camera', 1, 0, 'C');
-        $pdf->Cell(20, 6, '1', 1, 0, 'C');
-        $pdf->Cell(70, 6, '50', 1, 1, 'C');
-    // }
+    $i = 1;
+    foreach ($items as $item){
+        $pdf->Cell(10, 6, $i, 1, 0, 'C');
+        $pdf->Cell(80, 6, $item->asset_name, 1, 0, 'C');
+        $pdf->Cell(20, 6, $item->asset_qty, 1, 0, 'C');
+        $item_ids = '';
+        foreach($item->asset_id as $j){
+            $item_ids .= $j . '; ';
+        }
+        $pdf->Cell(70, 6, $item_ids, 1, 1, 'C');
+        $i++;
+    }
 
     $pdf->Ln();
 
     $pdf->Cell(30, 6, 'Keterangan pengembalian', 0, 1);
+    $pdf->Cell(30, 6, 'Status Barang: ' . $stat, 0, 1);
     $pdf->Cell(180, 20, $keterangan, 1, 1);
     $pdf->SetFont('Arial', 'B', 7);
     $pdf->Cell(180, 6, 'Catatan: Peminjam (dan/atau anggota kelompoknya) bertanggung jawab dan bersedia menerima segala konsekuensi jika terjadi hal-hal yang tidak', 0, 1);

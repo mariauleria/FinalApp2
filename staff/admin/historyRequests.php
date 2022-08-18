@@ -6,7 +6,7 @@ include '../backend/dbaset.php';
 
 $kode_prodi = $_SESSION['curr-user']->user_kode_prodiv;
 $query = "
-SELECT user_id, book_date, return_date, request_reason, request_status, request_items
+SELECT user_id, book_date, return_date, request_reason, request_status, request_items, request_id
 FROM (
 	SELECT request_id,
 	request_date,
