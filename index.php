@@ -56,11 +56,10 @@
                     <th class="col-1">Request</th>
                     <th class="col-2">Book date</th>
                     <th class="col-2">Return date</th>
-                    <!-- TO DO: fahmi -->
-                    <th>Lokasi Pinjam</th>
+                    <th class="col-1">Lokasi Pinjam</th>
                     <th class="col-2">Item (qty)</th>
                     <th class="col-1">Status</th>
-                    <th class="col-3">Action</th>
+                    <th class="col-2">Action</th>
                 </tr>
 
                 <?php $i = 1; ?>
@@ -70,8 +69,7 @@
                         <td class="col-1"><?= $req['request_reason']; ?></td>
                         <td class="col-2"><?= $req['book_date']; ?></td>
                         <td class="col-2"><?= $req['return_date']; ?></td>
-                        <!-- TO DO: fahmi -->
-                        <td><?= $req['lokasi_pinjam'] ?></td>
+                        <td class="col-1"><?= $req['lokasi_pinjam'] ?></td>
                         <td class="col-2">
                             <?php 
                                 $obj = json_decode($req['request_items']);
@@ -83,7 +81,7 @@
                             ?>
                         </td>
                         <td class="req-status col-1"><?= $req['request_status']; ?></td>
-                        <td class="col-3">
+                        <td class="col-2">
                             <?php if($req['request_status'] == 'waiting approval') : ?>
                                 <a class="btn btn-primary" href="index.php?id=<?= $req['request_id'] ?>" onclick="return confirm('Request akan di cancel?');">Cancel</a>
                             <?php elseif($req['request_status'] == 'approved') :?>

@@ -48,11 +48,10 @@ $requests = query($query);
                     <th class="col-1">qty</th>
                     <th class="col-1">Tanggal pinjam</th>
                     <th class="col-1">Tanggal kembali</th>
-                    <!-- TO DO: fahmi -->
-                    <th>Lokasi Peminjaman</th>
+                    <th class="col-1">Lokasi Peminjaman</th>
                     <th class="col-1">Keperluan</th>
                     <th class="col-1">Status peminjaman</th>
-                    <th class="col-2">Aksi</th>
+                    <th class="col-1">Aksi</th>
                 </tr>
 
                 <?php $i = 1; ?>
@@ -93,11 +92,10 @@ $requests = query($query);
                         </td>
                         <td class="col-1"><?= $req['book_date']; ?></td>
                         <td class="col-1"><?= $req['return_date']; ?></td>
-                        <!-- TO DO: fahmi -->
-                        <td><?= $req['lokasi_pinjam'] ?></td>
+                        <td class="col-1"><?= $req['lokasi_pinjam'] ?></td>
                         <td class="col-1"><?= $req['request_reason']; ?></td>
                         <td class="col-1"><?= $req['request_status']; ?></td>
-                        <td class="col-2">
+                        <td class="col-1">
                             <?php 
                                 $a = 'approve-' . $req['request_id'];
                                 $r = 'reject-' . $req['request_id'];

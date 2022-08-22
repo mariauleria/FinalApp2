@@ -102,11 +102,12 @@ if(isset($_POST['submit'])){
                             </tr>
                         </table>
                     </d>
-                    <!-- TO DO: fahmi -->
                     <div>
-                        <h3>Lokasi Peminjaman</h3>
-                        <label for="lokasi-pinjam">Lokasi pinjam (masukan '<b>bawa pulang</b>' jika alat dibawa pulang ke rumah): </label> <br>
-                        <input type="text" name="lokasi-pinjam" required>
+                        <h4 class="my-3">Lokasi Peminjaman</h4>
+                        <label for="lokasi-pinjam">Lokasi pinjam (masukan '<b>bawa pulang</b>' jika alat dibawa pulang ke rumah): </label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="lokasi-pinjam" required>
+                        </div>
                     </div>
                     <div>
                         <h4 class="my-3">Alasan Peminjaman</h4>
@@ -117,11 +118,11 @@ if(isset($_POST['submit'])){
                         <input type="hidden" name="return-date" value="<?= date("Y-m-d H:i", $return_date) ?>">
                         <button class="btn btn-primary my-3" type="submit" name="submit">Submit</button>
                     </div>
+                    
                 </div>
             </form>
         <?php endif; ?>
     <?php endif; ?>
-
 
     <script>
         $(function() {
