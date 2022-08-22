@@ -95,7 +95,7 @@ $requests = query($query);
                         <td class="col-1"><?= $req['request_reason']; ?></td>
                         <td class="col-2"><?= $req['request_status']; ?></td>
                         <td class="col-1">
-                            <!-- TO DO: buat pdf generate receiptnya -->
+                            <!-- DONE: buat pdf generate receiptnya -->
                             <?php if($req['request_status'] == 'done') :?>
                                 <form action="../backend/fpdf/" method="post">
                                     <button type="submit" name="req_id" value="<?= $req['request_id'] ?>" class="btn btn-primary">Download Receipt</button>
