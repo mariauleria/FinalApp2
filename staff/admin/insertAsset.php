@@ -30,26 +30,26 @@ if(isset($_POST['submit'])){
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 
-<main>
-
-    <h2>Tambah Asset Baru</h2>
+<main class="asset-container">
+    <h2 class="mb-4">Tambah Asset Baru</h2>
 
     <form action="" method="post" id="tambah-asset">
-        <ul>
-            <li>
-                <label for="serial-number">Serial Number</label>
-                <input type="text" name="serial-number" id="serial-number">
-            </li>
-            <li>
-                <label for="storage-location">Storage Location</label>
-                <input type="text" name="storage-location" id="storage-location" required>
-            </li>
-            <li>
-                <label for="brand">Brand</label>
-                <input type="text" name="brand" id="brand">
-            </li>
-            <li class="button-group" data-toggle="buttons">
-                Asset Type <br>
+        <div>
+            <div class="input-group d-flex my-4">
+                <label class="w-25" for="serial-number">Serial Number</label>
+                <input class="w-75" type="text" class="form-control" name="serial-number" id="serial-number">
+            </div>
+            <div class="input-group d-flex my-4">
+                <label class="w-25" for="storage-location">Storage Location</label>
+                <input class="w-75" type="text" name="storage-location" id="storage-location" required>
+            </div>
+            <div class="input-group d-flex my-4">
+                <label class="w-25" for="brand">Brand</label>
+                <input class="w-75" type="text" name="brand" id="brand">
+            </div>
+            <div class="button-group d-flex my-4" data-toggle="buttons">
+            <label class="w-25">Asset Type</label>
+                <div class="w-75">
                 <?php 
                 // DONE: fix kalau belum ada aset nya sama sekali
                 
@@ -59,26 +59,28 @@ if(isset($_POST['submit'])){
                         <input type="radio" name="asset-category" id="default" value="<?= $res['category_id'] ?>"><?= $res['asset_name'] ?><br>
                     <?php endforeach; ?>
                 <?php endif; ?>
-                    <input type="radio" name="asset-category" value="">Tambah Type Aset Baru
-                <div id="new-asset"></div>
-            </li>
+                <input type="radio" name="asset-category" value="">
+                <label>Tambah Type Aset Baru</label>
+                </div>
+            </div>
+            <div class="w-100" id="new-asset"></div>
 
             <?php if(isset($errorMsg)) :?>
-                <li>
+                <div>
                     <p>Storage location & Asset Type harus diisi.</p>
-                </li>
+                </div>
             <?php endif; ?>
 
-            <li>
-                <button type="submit" name="submit">Submit</button>
-            </li>
-        </ul>
+            <div>
+                <button class="btn btn-primary btn-lg" type="submit" name="submit">Submit</button>
+            </div>
+        </div>
     </form>
 
     <script>
         function newAssetField(id){
             const element = document.getElementById(id);
-            element.innerHTML = "<label for='new-asset-category'>Nama Type Asset Baru </label><input type='text' name='new-asset-category' id='new-asset-category'>";
+            element.innerHTML = "<label class='w-25 mb-5' for='new-asset-category'>Nama Type Asset Baru </label><input class='w-75' type='text' name='new-asset-category' id='new-asset-category'>";
         }
 
         $('#tambah-asset input[value=""]').on('change', function(event) {

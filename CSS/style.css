@@ -1,8 +1,39 @@
-label{
-    display: block;
+html {
+  height: 100%;
 }
 
-p{
-    color: red;
-    font-style: italic;
+.bodyStyling {
+  background-color: #ffffff;
+}
+
+.containerStyling {
+  background-color: #5cacd2;
+  border-radius: 0.5rem;
+}
+
+.logoBinus {
+  width: 350px;
+  height: 200px;
+  margin: 0;
+}
+
+.headerBodyStyling {
+  background-color: #0090d1;
+}
+
+.pageContainer {
+  background-color: #5cacd2;
+}
+
+.nav-links {
+  display: flex;
+  list-style-type: none;
+  font-size: 1.3rem;
+  padding: 1rem 2.5rem;
+  font-weight: 500;
+  width: 100%;
+}
+
+.asset-container {
+  padding: 2rem 3.5rem;
 }

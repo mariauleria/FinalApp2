@@ -44,33 +44,35 @@
     }
 ?>
 
-<main>
-    <div class="asset-container">
+<main class="asset-container">
+    <div>
         <?php if(!$requests) :?>
-            <h2>You have no requests.</h2>
+            <h2 class="mb-4">You have no requests.</h2>
         <?php else :?>
-            <h2>Your requests</h2>
-            <table border="1" cellpadding="10" cellspacing="0">
-                <tr>
-                    <th>No</th>
-                    <th>Request</th>
-                    <th>Book date</th>
-                    <th>Return date</th>
+            <h2 class="mb-4">Your requests</h2>
+            <table class="table" cellpadding="10" cellspacing="0">
+                <tr class="row">
+                    <th class="col-1">No</th>
+                    <th class="col-1">Request</th>
+                    <th class="col-2">Book date</th>
+                    <th class="col-2">Return date</th>
+                    <!-- TO DO: fahmi -->
                     <th>Lokasi Pinjam</th>
-                    <th>Item (qty)</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th class="col-2">Item (qty)</th>
+                    <th class="col-1">Status</th>
+                    <th class="col-3">Action</th>
                 </tr>
 
                 <?php $i = 1; ?>
                 <?php foreach($requests as $req) :?>
-                    <tr>
-                        <td><?= $i; ?></td>
-                        <td><?= $req['request_reason']; ?></td>
-                        <td><?= $req['book_date']; ?></td>
-                        <td><?= $req['return_date']; ?></td>
+                    <tr class="row">
+                        <td class="col-1"><?= $i; ?></td>
+                        <td class="col-1"><?= $req['request_reason']; ?></td>
+                        <td class="col-2"><?= $req['book_date']; ?></td>
+                        <td class="col-2"><?= $req['return_date']; ?></td>
+                        <!-- TO DO: fahmi -->
                         <td><?= $req['lokasi_pinjam'] ?></td>
-                        <td>
+                        <td class="col-2">
                             <?php 
                                 $obj = json_decode($req['request_items']);
                                 $items = $obj->items;
@@ -80,17 +82,17 @@
                                 }
                             ?>
                         </td>
-                        <td class="req-status"><?= $req['request_status']; ?></td>
-                        <td>
+                        <td class="req-status col-1"><?= $req['request_status']; ?></td>
+                        <td class="col-3">
                             <?php if($req['request_status'] == 'waiting approval') : ?>
-                                <a href="index.php?id=<?= $req['request_id'] ?>" onclick="return confirm('Request akan di cancel?');">Cancel</a>
+                                <a class="btn btn-primary" href="index.php?id=<?= $req['request_id'] ?>" onclick="return confirm('Request akan di cancel?');">Cancel</a>
                             <?php elseif($req['request_status'] == 'approved') :?>
                                 Silahkan ambil barang sesuai jadwal booking.
                             <?php elseif($req['request_status'] == 'on use') :?>
 
                                 <!-- DONE: buat pdf generate receiptnya -->
                                 <form action="backend/fpdf/" method="post">
-                                    <button type="submit" name="req_id" value="<?= $req['request_id'] ?>">Download Receipt</button>
+                                    <button type="submit" name="req_id" value="<?= $req['request_id'] ?>" class="btn btn-primary">Download Receipt</button>
                                 </form>
 
                                 <!-- DONE: pengembalian barang -->
@@ -108,10 +110,10 @@
                                     $b = (int)$b->format('His');
                                     if($b >= $a):
                                         if(!$req['flag_return']) :?>       
-                                            <a href="kembaliAsset.php?id=<?= htmlspecialchars($req['request_id']) ?>">Kembalikan Barang</a>
+                                            <a class="btn btn-primary" href="kembaliAsset.php?id=<?= htmlspecialchars($req['request_id']) ?>">Kembalikan Barang</a>
                                         <?php else: ?>
                                             <!-- DONE: buat lihat status pengembaliannya -->
-                                            <a href="statusKembali.php?id=<?= htmlspecialchars($req['request_id']) ?>">Lihat Status Pengembalian</a>
+                                            <a class="btn btn-primary" href="statusKembali.php?id=<?= htmlspecialchars($req['request_id']) ?>">Lihat Status Pengembalian</a>
                                         <?php endif; ?>
                                     <?php endif; ?>
                                 <?php endif; ?>

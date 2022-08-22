@@ -30,21 +30,29 @@ else{
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="../../CSS/style.css" />
 </head>
 <body>
-    <header>
-        <div class="user-name">
+    <header class="headerBodyStyling">
+        <div class="user-name mx-5 py-4">
             <h2 class="greetings">
-                Hello <?php echo $_SESSION['curr-user']->username;?>
+                Hello, <?php echo $_SESSION['curr-user']->username;?>
             </h2>
         </div>
 
-        <nav>
-            <ul class="nav-links">
-                <li><a class="nav-link" id="" href="./index.php">Dashboard</a></li>
-                <li><a class="nav-link" href="./searchAsset.php">Cari Aset</a></li>
-                <li><a class="nav-link" href="./historyRequests.php">History</a></li>
-                <li><a class="nav-link" href="../backend/logoutFunction.php">Logout</a></li>
-            </ul>
-        </nav>
+        <div class="pageContainer ">
+            <nav class="w-100">
+                <ul class="nav-links d-flex">
+                    <li class="nav-link"><a href="./index.php">Dashboard</a></li>
+                    <li class="nav-link"><a href="./searchAsset.php">Cari Aset</a></li>
+                    <li class="nav-link"><a href="./historyRequests.php">History</a></li>
+                    <li class="nav-link ml-auto"><a class="text-danger" href="../backend/logoutFunction.php">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>

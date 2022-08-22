@@ -70,66 +70,97 @@ if(isset($_POST['register'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Register</title>
 
-    <link rel="stylesheet" href="./CSS/style.css">
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <!-- External CSS -->
+    <link rel="stylesheet" href="CSS/style.css">
 </head>
-<body>
-    
-    <h1>Student Register</h1>
+<body class="bodyStyling d-flex flex-column justify-content-center h-100">
 
-    <form action="" method="POST">
-        <ul>
-            <li>
-                <label for="username">Name</label>
-                <input type="text" name="username" id="username">
-            </li>
-            <li>
-                <label for="binusian-id">Binusian ID</label>
-                <input type="text" name="binusian-id" id="binusian-id">
-            </li>
-            <li>
-                <label for="phone">Phone Number</label>
-                <input type="text" name="phone" id="phone">
-            </li>
-            <li>
-                <label for="address">Home Address</label>
-                <input type="text" name="address" id="address">
-            </li>
-            <li>
-                <label for="email">Email</label>
-                <input type="text" name="email" id="email">
-            </li>
-            <li>
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password">
-            </li>
-            <li>
-                <label for="confirm-password">Confirm Password</label>
-                <input type="password" name="confirm-password" id="confirm-password">
-            </li>
-            <li>
-                <label for="prodi">Prodi</label>
-                <select name="prodi" id="prodi">
-                    <option value="DKV">DKV</option>
-                    <option value="DI">DI</option>
-                    <option value="IT">IT</option>
-                </select>
-            </li>
+    <div class="container w-50 text-center containerStyling">
+        
+    <img src="img/logo-binus.png" class="logoBinus"/>
 
-            <?php if(isset($errorMsg)): ?>
-                <li>
-                    <p>Data tidak sesuai!</p>
-                </li>
-            <?php endif;?>
+    <h1 class="pb-4">Student Register</h1>
+
+        <form action="" method="POST">
+            <div class="row d-flex text-left mx-2 my-3">
+                <div class="col-6">
+                    <label class="h5" for="username">Name</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="username" id="username">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label class="h5" for="email">Email</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="email" id="email">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">@binus.ac.id</span>
+                        </div>
+                   </div>
+                </div>
+            </div>
+            <div class="row d-flex text-left mx-2 my-3">
+                <div class="col-6">
+                    <label class="h5" for="binusian-id">Binusian ID</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="binusian-id" id="binusian-id">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label class="h5" for="phone">Phone Number</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="phone" id="phone">
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex text-left mx-2 my-3">
+                <div class="col-6">
+                    <label class="h5" for="address">Home Address</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="address" id="address">
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label class="h5" for="password">Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" name="password" id="password">
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex text-left mx-2 my-3">
+                <div class="col-6">
+                    <label class="h5" for="prodi">Prodi</label>
+                    <div class="input-group">
+                        <select class="custom-select" name="prodi" id="prodi">
+                            <option value="DKV">DKV</option>
+                            <option value="DI">DI</option>
+                            <option value="IT">IT</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <label class="h5" for="confirm-password">Confirm Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" name="confirm-password" id="confirm-password">
+                    </div>  
+                </div>
+            </div>
             
-            <li>
-                <button type="submit" name="register">Register</button>
-            </li>
-            <li>
-                <a href="./login.php">Login</a>
-            </li>
-        </ul>
-    </form>
+            <?php if(isset($errorMsg)): ?>
+                <div class="alert alert-danger w-50 m-auto" role="alert">
+                    <h6>Data Tidak Sesuai!</h6>
+                </div>
+            <?php endif;?>
+                
+            <div class="d-flex justify-content-end my-5">
+                <a class="btn btn-secondary btn-lg px-5" href="./login.php">Login</a>
+                <button class="btn btn-primary btn-lg px-5 mx-4" type="submit" name="register">Register</button>
+            </div>
+        </form>
+    </div>
 
 </body>
 </html>

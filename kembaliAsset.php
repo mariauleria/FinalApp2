@@ -49,7 +49,7 @@ if(isset($_POST['submit'])){
 ?>
 
 <?php if(!empty($_GET['id'])) : ?>
-<main>
+<main class="asset-container">
 
 <?php
 
@@ -65,20 +65,20 @@ if(isset($_POST['submit'])){
 
 ?>
 
-    <h2>Kembali Pinjaman</h2>
+    <h2 class="mb-4">Kembali Pinjaman</h2>
 
-    <ul>
-        <li>
-            Tanggal pengembalian: <?= $result['return_date'] ?>
-        </li>
-        <li>
+    <div>
+        <div class="input-group d-flex my-4">
+        <label class="w-25">Tanggal pengembalian:</label> <?= $result['return_date'] ?>
+        </div>
+        <div class="input-group d-flex my-4">
             <?php
                 $obj = json_decode($result['request_items']);
                 $obj =  $obj->items;
                 $i = 1;
             ?>
-            Barang yang dikembalikan:
-            <table border="1" cellpadding="10" cellspacing="0">
+            <label class="w-25">Barang yang dikembalikan:</label>
+            <table class="table w-75" cellpadding="10" cellspacing="0">
                 <tr>
                     <th>No.</th>
                     <th>Nama Asset</th>
@@ -92,23 +92,25 @@ if(isset($_POST['submit'])){
                     </tr>
                 <?php $i++; endforeach; ?>
             </table>
-        </li>
+        </div>
         <form method="post">
-            <li>
-                Apakah barang dalam kondisi yang baik? <br>
-                <input type="radio" name="kondisi_asset" id="kondisi_asset" value="aman" required onclick="document.getElementById('return_condition').removeAttribute('required')"/>Ya
-                <input type="radio" name="kondisi_asset" id="kondisi_asset" value="rusak" required onclick="document.getElementById('return_condition').setAttribute('required', 'required')"/>Tidak
-            </li>
-            <li>
-                Berikan deskripsi keterangan terkait kondisi barang: <br>
-                <textarea name="return_condition" id="return_condition" cols="30" rows="10"></textarea>
-            </li>
-            <li>
+            <div class="input-group d-flex my-4">
+                <label class="w-25">Apakah barang dalam kondisi yang baik? </label>
+                <div class="w-75">
+                    <input type="radio" name="kondisi_asset" id="kondisi_asset" value="aman" required onclick="document.getElementById('return_condition').removeAttribute('required')"/>Ya
+                    <input type="radio" name="kondisi_asset" id="kondisi_asset" value="rusak" required onclick="document.getElementById('return_condition').setAttribute('required', 'required')"/>Tidak
+                </div>
+            </div>
+            <div class="input-group d-flex my-4">
+            <label class="w-25">Berikan deskripsi keterangan terkait kondisi barang: </label>
+                <textarea class="form-control" name="return_condition" id="return_condition" cols="30" rows="5"></textarea>
+            </div>
+            <div class="input-group d-flex my-4 d-flex">
                 <input type="hidden" name="request_id" id="request_id" value="<?= $request_id ?>">
-                <button type="submit" name="submit" id="submit">Submit</button>
-            </li>
+                <button class="btn btn-primary btn-lg" type="submit" name="submit" id="submit">Submit</button>
+            </div>
         </form>
-    </ul>
+    </div>
 
 </main>
 <?php else: notValid(); ?>

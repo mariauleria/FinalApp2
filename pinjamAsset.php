@@ -23,33 +23,33 @@ if(isset($_POST['submit'])){
 ?>
 
 
-<main>
-    <h2>Pinjam Aset</h2>
+<main class="asset-container">
+    <h2 class="mb-4">Pinjam Asset</h2>
 
     <?php if(!$rows) :?>
-        <p>Tidak ada asset yang bisa dipinjam.</p>
+        <h4>Tidak ada asset yang bisa dipinjam.</h4>
     <?php else: ?>
     <!-- DATE PICKER -->
         <form action="" method="post">
-            <ul>
-                <li>
-                    <label for="datetimes">Tanggal peminjaman: </label>
-                    <input type="text" name="datetimes" id="datetimes" size="38"/>
-                </li>
-                <li>
-                    <button type="submit" name="check">Check</button>
-                </li>
-            </ul>
+            <div>
+                <div class="my-2">
+                    <h4 class="my-3" for="datetimes">Tanggal peminjaman </h5>
+                    <div class="d-flex">
+                        <input class="py-2" type="text" name="datetimes" id="datetimes" size="40"/>
+                        <button class="btn btn-primary mx-3" type="submit" name="check">Check</button>
+                    </div>
+                </div>
+            </div>
         </form>
         
         <?php if(isset($_POST['check'])) :?>
-            <h2>Form Peminjaman</h2>
+            <h2 class="mt-5 mb-4">Form Peminjaman</h2>
             <form action="" method="post">
-                <ul>
-                    <li>
-                        <div class="asset-container">
-                            <h3>Available Items</h3>
-                            <table border="1" cellpadding="10" cellspacing="0">
+                <div>
+                    <div>
+                        <div>
+                            <h4 class="my-3">Available Items</h4>
+                            <table class="mb-5 w-100" border="1" cellpadding="10" cellspacing="0">
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Aset</th>
@@ -87,10 +87,10 @@ if(isset($_POST['submit'])){
                                 <?php endforeach; ?>
                             </table>
                         </div>
-                    </li>
-                    <li>
-                        <h3>Tanggal Peminjaman</h3>
-                        <table border="1" cellpadding="10" cellspacing="0">
+                    </div>
+                    <div>
+                        <h4 class="my-3">Tanggal Peminjaman</h4>
+                        <table class="mb-5 w-100" border="1" cellpadding="10" cellspacing="0">
                             <tr>
                                 <th>Tanggal pick up</th>
                                 <th>Tanggal pengembalian</th>
@@ -101,22 +101,23 @@ if(isset($_POST['submit'])){
                                 <td><?= date("l, d-m-Y H:i", $return_date); ?></td>
                             </tr>
                         </table>
-                    </li>
-                    <li>
+                    </d>
+                    <!-- TO DO: fahmi -->
+                    <div>
                         <h3>Lokasi Peminjaman</h3>
                         <label for="lokasi-pinjam">Lokasi pinjam (masukan '<b>bawa pulang</b>' jika alat dibawa pulang ke rumah): </label> <br>
                         <input type="text" name="lokasi-pinjam" required>
-                    </li>
-                    <li>
-                        <h3>Alasan Peminjaman</h3>
-                        <textarea name="request-reason" id="request-reason" cols="30" rows="10" required></textarea>
-                    </li>
-                    <li>
+                    </div>
+                    <div>
+                        <h4 class="my-3">Alasan Peminjaman</h4>
+                        <textarea class="form-control" name="request-reason" id="request-reason" rows="5" required></textarea>
+                    </d>
+                    <div>
                         <input type="hidden" name="book-date" value="<?= date("Y-m-d H:i", $book_date) ?>">
                         <input type="hidden" name="return-date" value="<?= date("Y-m-d H:i", $return_date) ?>">
-                        <button type="submit" name="submit">Submit</button>
-                    </li>
-                </ul>
+                        <button class="btn btn-primary my-3" type="submit" name="submit">Submit</button>
+                    </div>
+                </div>
             </form>
         <?php endif; ?>
     <?php endif; ?>
