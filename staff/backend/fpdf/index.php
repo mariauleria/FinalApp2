@@ -106,6 +106,18 @@ if(isset($_POST['req_id'])){
     $pdf->Cell(110, 6, '', 0, 0);
     $pdf->Cell(35, 6, $taken_date, 1, 0, 'C');
     $pdf->Cell(35, 6, $realize_return_date, 1, 1, 'C');
+
+    $is_Approve = '';
+    if($result['request_status'] == "done"){
+        $is_Approve = 'APPROVED';
+    }
+
+    $pdf->SetFont('Arial', 'B', 12);
+    $pdf->SetTextColor(0, 150, 0);
+    $pdf->Cell(110, 6, '', 0, 0);
+    $pdf->Cell(70, 6, $is_Approve, 1, 1, 'C');
+    $pdf->SetFont('Arial', '', 7);
+    $pdf->SetTextColor(0, 0, 0);
     $pdf->Cell(180, 6, '*Dokumen ini sah diketahui SCC koordinator dan peminjam meskipun tanpa tanda tangan', 0, 1, 'R');
 
     $pdf->Output();

@@ -120,7 +120,7 @@
 
                                 <!-- DONE: buat pdf generate receiptnya -->
                                 <form action="backend/fpdf/" method="post">
-                                    <button type="submit" name="req_id" value="<?= $req['request_id'] ?>">Download Receipt</button>
+                                    <button class="btn btn-primary" type="submit" name="req_id" value="<?= $req['request_id'] ?>">Download Receipt</button>
                                 </form>
 
                             <?php elseif($req['request_status'] == 'rejected' || $req['request_status'] == 'canceled') :?>
