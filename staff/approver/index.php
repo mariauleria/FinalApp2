@@ -109,8 +109,8 @@ $requests = query($query);
                             ?>
                             <?php if($req['request_status'] == 'waiting approval') :?>
                                 <form method="post">
-                                    <input type="submit" name="approve-<?= $req['request_id'] ?>" value="approve">
-                                    <input type="submit" name="reject-<?= $req['request_id'] ?>" value="reject" onclick="return confirm('request akan direject?');">
+                                    <input class="btn btn-primary" type="submit" name="approve-<?= $req['request_id'] ?>" value="approve">
+                                    <input class="btn btn-primary" type="submit" name="reject-<?= $req['request_id'] ?>" value="reject" onclick="return confirm('request akan direject?');">
                                 </form>
                             <?php elseif($req['request_status'] == 'approved') :?>
                                 -

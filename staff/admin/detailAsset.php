@@ -22,8 +22,8 @@ $result = query($query);
                 <th class="col-1">PIC</th>
                 <th class="col-2">Current Location</th>
                 <th class="col-1">Stored at</th>
-                <th class="col-2">Brand</th>
-                <th class="col-1">Aksi</th>
+                <th class="col-1">Brand</th>
+                <th class="col-2">Aksi</th>
                 <th class="col-1">Booked At</th>
             </tr>
 
@@ -64,8 +64,8 @@ $result = query($query);
                     </td>
                     <td class="col-2"><?= $res['asset_curr_location'] ?></td>
                     <td class="col-1"><?= $res['asset_assigned_location'] ?></td>
-                    <td class="col-2"><?= $res['asset_brand'] ?></td>
-                    <td class="col-1">
+                    <td class="col-1"><?= $res['asset_brand'] ?></td>
+                    <td class="col-2">
                         <?php if($res['asset_status'] != 'on use') :?>
                             <a class="btn btn-primary btn-sm" href="./editAsset.php?id=<?= htmlspecialchars($res['asset_id']) ?>">Edit</a>  <!-- DONE: buat edit page -->
                             <!-- DONE: Kalau hapus asetnya request yg bookingnya gimana? arahin ke delete requestnya? -->
