@@ -48,7 +48,7 @@ $requests = query($query);
                     <th class="col-1">Lokasi Peminjaman</th>
                     <th class="col-1">Keperluan</th>
                     <th class="col-1">Status peminjaman</th>
-                    <th class="col-1">Aksi</th>
+                    <th class="col-1" style="max-width:8rem;">Aksi</th>
                 </tr>
 
                 <?php $i = 1; ?>
@@ -91,8 +91,8 @@ $requests = query($query);
                         <td class="col-1"><?= $req['return_date']; ?></td>
                         <td class="col-1"><?= $req['lokasi_pinjam'] ?></td>
                         <td class="col-1"><?= $req['request_reason']; ?></td>
-                        <td class="col-2"><?= $req['request_status']; ?></td>
-                        <td class="col-1">
+                        <td class="col-1"><?= $req['request_status']; ?></td>
+                        <td class="col-1" style="max-width:8rem;">
                             <!-- DONE: buat pdf generate receiptnya -->
                             <?php if($req['request_status'] == 'done') :?>
                                 <form action="../backend/fpdf/" method="post">

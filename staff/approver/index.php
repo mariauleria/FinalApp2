@@ -51,7 +51,7 @@ $requests = query($query);
                     <th class="col-1">Lokasi Peminjaman</th>
                     <th class="col-1">Keperluan</th>
                     <th class="col-1">Status peminjaman</th>
-                    <th class="col-1">Aksi</th>
+                    <th class="col-1" style="max-width:8rem;">Aksi</th>
                 </tr>
 
                 <?php $i = 1; ?>
@@ -95,7 +95,7 @@ $requests = query($query);
                         <td class="col-1"><?= $req['lokasi_pinjam'] ?></td>
                         <td class="col-1"><?= $req['request_reason']; ?></td>
                         <td class="col-1"><?= $req['request_status']; ?></td>
-                        <td class="col-1">
+                        <td class="col-1" style="max-width:8rem;">
                             <?php 
                                 $a = 'approve-' . $req['request_id'];
                                 $r = 'reject-' . $req['request_id'];
