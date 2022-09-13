@@ -97,15 +97,21 @@
                                 <!-- DONE: udah dibenerin :D -->
                                 <!-- DONE: betulin tanggalnya -_- -->
                                 <?php 
-                                $a = new DateTime($req['return_date']);
+                                $a = new DateTime($req['return_date'], new DateTimeZone('Asia/Jakarta'));
                                 $b = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
 
-                                $c = $a->format('m/d/Y');
-                                $d = $b->format('m/d/Y');
+                                $c = $a->format('m/d/Y');   //return
+                                $d = $b->format('m/d/Y');   //current
 
-                                if($d >= $c):
-                                    $a = (int)$a->format('His');
-                                    $b = (int)$b->format('His');
+                                if($d > $c):
+                                    if(!$req['flag_return']) :?>       
+                                        <a class="btn btn-primary" href="kembaliAsset.php?id=<?= htmlspecialchars($req['request_id']) ?>">Kembalikan Barang</a>
+                                    <?php else: ?>
+                                        <a class="btn btn-primary" href="statusKembali.php?id=<?= htmlspecialchars($req['request_id']) ?>">Lihat Status Pengembalian</a>
+                                    <?php endif; ?>
+                                <?php elseif($d == $c):
+                                    $a = (int)$a->format('His');    //return
+                                    $b = (int)$b->format('His');    //current
                                     if($b >= $a):
                                         if(!$req['flag_return']) :?>       
                                             <a class="btn btn-primary" href="kembaliAsset.php?id=<?= htmlspecialchars($req['request_id']) ?>">Kembalikan Barang</a>

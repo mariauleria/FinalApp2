@@ -125,12 +125,15 @@ $requests = query($query);
 
                                     // DONE: betulin tanggalnya -_-
 
-                                    $a = new DateTime($req['book_date']);
+                                    $a = new DateTime($req['book_date'], new DateTimeZone('Asia/Jakarta'));
                                     $b = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
 
                                     $c = $a->format('m/d/Y');
                                     $d = $b->format('m/d/Y');
-                                    if($d >= $c){
+                                    if($d > $c){
+                                        taken($req['request_id']);
+                                    }
+                                    else if($d == $c){
                                         $a = (int)$a->format('His');
                                         $b = (int)$b->format('His');
                                         if($b >= $a){
